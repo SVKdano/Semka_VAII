@@ -1,0 +1,11 @@
+.topPanel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 30px;
+  background-color: #b35353;
+}
+
+.topPanel img {
+  width: 7rem;
+}
