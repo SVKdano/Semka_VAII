@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LeadersTableComponent } from './leaders-table.component';
+import { LigaSestComponent } from './liga-sest.component';
 
-describe('LeadersTableComponent', () => {
-  let component: LeadersTableComponent;
-  let fixture: ComponentFixture<LeadersTableComponent>;
+describe('LigaSestComponent', () => {
+  let component: LigaSestComponent;
+  let fixture: ComponentFixture<LigaSestComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LeadersTableComponent ]
+      declarations: [ LigaSestComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LeadersTableComponent);
+    fixture = TestBed.createComponent(LigaSestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
