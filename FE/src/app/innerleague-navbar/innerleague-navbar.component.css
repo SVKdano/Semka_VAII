@@ -4,10 +4,11 @@ p {
 
 button {
   min-width: 10%;
+  margin-right: 2%;
 }
 
 mat-toolbar {
-  justify-content: space-evenly;
+  justify-content: flex-start;
 }
 
 

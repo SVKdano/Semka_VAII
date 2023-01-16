@@ -1,17 +1,13 @@
 <app-header></app-header>
 <app-innerleague-navbar></app-innerleague-navbar>
 <h2><b><i>Piata okresná stolnotenisová liga</i></b></h2>
-<table>
-  <thead>
-  <th>Id timu</th>
-  <th>Nazov timu</th>
-  <th>Liga timu</th>
-  </thead>
-  <tbody>
-  <tr *ngFor="let team of teams">
-    <td> {{team.id}} </td>
-    <td> {{team.name}} </td>
-    <td> {{team.league}} </td>
-  </tr>
-  </tbody>
-</table>
+<mat-card *ngFor="let team of teams">
+  <mat-card-content>{{team.name}}</mat-card-content>
+  <span class="example-spacer"></span>
+  <mat-card-content>
+    <button mat-stroked-button color="warn">Hracia miestnosť</button>
+  </mat-card-content>
+  <mat-card-content>
+    <button mat-stroked-button color="warn">Súpiska</button>
+  </mat-card-content>
+</mat-card>
