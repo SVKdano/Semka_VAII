@@ -15,6 +15,7 @@ import {MatIconModule} from "@angular/material/icon";
 import { LigaPatComponent } from './liga-pat/liga-pat.component';
 import { LigaSestComponent } from './liga-sest/liga-sest.component';
 import { LigaSedemComponent } from './liga-sedem/liga-sedem.component';
+import { InnerleagueNavbarComponent } from './innerleague-navbar/innerleague-navbar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LigaSedemComponent } from './liga-sedem/liga-sedem.component';
     LeagueNavbarComponent,
     LigaPatComponent,
     LigaSestComponent,
-    LigaSedemComponent
+    LigaSedemComponent,
+    InnerleagueNavbarComponent
   ],
   imports: [
     BrowserModule,
