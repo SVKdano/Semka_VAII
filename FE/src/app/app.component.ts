@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import {Team} from "./models/teams";
-import {TeamsServiceService} from "./services/teams-service.service";
 
 @Component({
   selector: 'app-root',
@@ -9,9 +7,7 @@ import {TeamsServiceService} from "./services/teams-service.service";
 })
 export class AppComponent {
   title = 'semestralkaVAII';
-  teams: Team[] = [];
 
-  constructor(private teamService: TeamsServiceService) {
-    this.teamService.getTeams().subscribe((result: Team[]) => (this.teams = result));
-  }
+
+  constructor() {}
 }

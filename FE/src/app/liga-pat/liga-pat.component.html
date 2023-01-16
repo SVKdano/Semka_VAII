@@ -1,1 +1,16 @@
-<p>liga-pat works!</p>
+<app-header></app-header>
+
+<table>
+  <thead>
+  <th>Id timu</th>
+  <th>Nazov timu</th>
+  <th>Liga timu</th>
+  </thead>
+  <tbody>
+  <tr *ngFor="let team of teams">
+    <td> {{team.id}} </td>
+    <td> {{team.name}} </td>
+    <td> {{team.league}} </td>
+  </tr>
+  </tbody>
+</table>

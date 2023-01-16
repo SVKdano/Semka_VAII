@@ -11,8 +11,8 @@ export class TeamsServiceService {
 
   constructor(private http:HttpClient) { }
 
-  public getTeams() : Observable<Team[]> {
+  public getTeams(league: number) : Observable<Team[]> {
 
-    return this.http.get<Team[]>(`${environment.apiUrl}/teams/5`);
+    return this.http.get<Team[]>(`${environment.apiUrl}/teams/${league}`);
   }
 }
