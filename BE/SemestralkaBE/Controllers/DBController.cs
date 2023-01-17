@@ -27,8 +27,8 @@ namespace SemestralkaBE.Controllers
             return Ok(await _dbContext.Teams.Where(league => league.League == leagueId).ToListAsync());
         }
 
-        [HttpGet("/schedule")]
-        public async Task<ActionResult<List<Team>>> GetSchedule()
+        [HttpGet("/schedule/{leagueId}")]
+        public async Task<ActionResult<List<Team>>> GetSchedule(int leagueId)
         {
             return Ok(await _dbContext.Encounters.Join(_dbContext.Teams, a => a.Host, b => b.Id
             , (a,b) => new Encounter()
@@ -40,7 +40,8 @@ namespace SemestralkaBE.Controllers
                 GuestNavigation = a.GuestNavigation,
                 Host = b.Id,
                 HostNavigation = b
-            }).ToListAsync());
+            }).Where(c => c.GuestNavigation.League == leagueId)
+                .ToListAsync());
         }
     }
 }
