@@ -60,5 +60,11 @@ namespace SemestralkaBE.Controllers
                     Team = b
                 }).Where(c => c.TeamId == teamId).ToListAsync());
         }
+
+        [HttpGet("players/{teamId}")]
+        public async Task<ActionResult<List<Player>>> GetPlayers(int teamId)
+        {
+            return Ok(await _dbContext.Players.Where(a => a.TeamId == teamId).ToListAsync());
+        }
     }
 }
