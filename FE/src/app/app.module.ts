@@ -19,6 +19,7 @@ import { LeagueComponent } from './league/league.component';
 import { SortPipe } from './pipe/sort.pipe';
 import { PlaceComponent } from './place/place.component';
 import { PlayerListComponent } from './player-list/player-list.component';
+import { ContactsComponent } from './contacts/contacts.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { PlayerListComponent } from './player-list/player-list.component';
     LeagueComponent,
     SortPipe,
     PlaceComponent,
-    PlayerListComponent
+    PlayerListComponent,
+    ContactsComponent
   ],
   imports: [
     BrowserModule,
