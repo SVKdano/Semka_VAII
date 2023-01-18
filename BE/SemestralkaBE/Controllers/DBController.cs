@@ -35,10 +35,13 @@ namespace SemestralkaBE.Controllers
             {
                 Id = a.Id,
                 Date = a.Date,
+                Time = a.Time,
                 Place = a.Place,
                 Guest = a.Guest,
                 GuestNavigation = a.GuestNavigation,
                 Host = b.Id,
+                HostsWins = a.HostsWins,
+                GuestsWins = a.GuestsWins,
                 HostNavigation = b,
                 Round = a.Round
             }).Where(c => c.GuestNavigation.League == leagueId)

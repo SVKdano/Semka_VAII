@@ -16,6 +16,7 @@ import { InnerleagueNavbarComponent } from './innerleague-navbar/innerleague-nav
 import {MatCardModule} from "@angular/material/card";
 import { ScheduleComponent } from './schedule/schedule.component';
 import { LeagueComponent } from './league/league.component';
+import { SortPipe } from './pipe/sort.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LeagueComponent } from './league/league.component';
     LeagueNavbarComponent,
     InnerleagueNavbarComponent,
     ScheduleComponent,
-    LeagueComponent
+    LeagueComponent,
+    SortPipe
   ],
   imports: [
     BrowserModule,

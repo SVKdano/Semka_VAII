@@ -8,8 +8,8 @@ export class Schedule {
   place: number = 0;
   host: number = 0;
   guest: number = 0;
-  hostWins?: number;
-  guestWins?: number;
+  hostWins: number = 1;
+  guestWins: number = 1;
   hostNavigation!: Team;
   guestNavigation!: Team;
   placeNavigation ?: number;

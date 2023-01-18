@@ -1,0 +1,18 @@
+.id mat-card-content {
+  padding-top: 0;
+}
+
+mat-card-content {
+  min-width: 20%;
+}
+mat-card {
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.example-spacer {
+  flex: 2 1 auto;
+}
+
+
+

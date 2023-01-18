@@ -1,7 +1,20 @@
 <app-header></app-header>
 <app-innerleague-navbar></app-innerleague-navbar>
-<mat-card *ngFor="let encounter of schedule">
+<mat-card>
+  <div class="id">
+  <mat-card-content>Číslo zápasu</mat-card-content>
+  </div>
+  <span class="example-spacer"></span>
+  <mat-card-content>Domáce mužstvo</mat-card-content>
+  <mat-card-content>Hosťujúce mužstvo</mat-card-content>
+  <mat-card-content>Dátum</mat-card-content>
+</mat-card>
+<mat-card *ngFor="let encounter of (schedule | sort)">
+  <div class="id">
   <mat-card-content>{{encounter.id}}</mat-card-content>
+  </div>
+  <span class="example-spacer"></span>
   <mat-card-content>{{encounter.hostNavigation.name}}</mat-card-content>
   <mat-card-content>{{encounter.guestNavigation.name}}</mat-card-content>
+  <mat-card-content>{{encounter.date}} {{encounter.time}}</mat-card-content>
 </mat-card>
