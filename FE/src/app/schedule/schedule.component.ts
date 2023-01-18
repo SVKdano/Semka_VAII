@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {TeamsServiceService} from "../services/teams-service.service";
 import {Schedule} from "../models/schedule";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-schedule',
@@ -10,10 +11,11 @@ import {Schedule} from "../models/schedule";
 export class ScheduleComponent {
   schedule: Schedule[] =[];
 
-  constructor(private teamService: TeamsServiceService) {}
+  constructor(private teamService: TeamsServiceService, private route: ActivatedRoute) {}
 
   ngOnInit() : void {
-    this.teamService.getSchedule(5).subscribe((result: Schedule[]) => (this.schedule = result));
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.teamService.getSchedule(id).subscribe((result: Schedule[]) => (this.schedule = result));
   }
 
 

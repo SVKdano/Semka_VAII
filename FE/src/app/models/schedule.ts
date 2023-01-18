@@ -10,8 +10,8 @@ export class Schedule {
   guest: number = 0;
   hostWins?: number;
   guestWins?: number;
-  hostNavigation?: Team;
-  guestNavigation?: Team;
+  hostNavigation!: Team;
+  guestNavigation!: Team;
   placeNavigation ?: number;
   doubles?: [];
   singles?: [];

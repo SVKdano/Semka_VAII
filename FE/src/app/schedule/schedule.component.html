@@ -1,3 +1,7 @@
 <app-header></app-header>
 <app-innerleague-navbar></app-innerleague-navbar>
-<p>schedule works!</p>
+<mat-card *ngFor="let encounter of schedule">
+  <mat-card-content>{{encounter.id}}</mat-card-content>
+  <mat-card-content>{{encounter.hostNavigation.name}}</mat-card-content>
+  <mat-card-content>{{encounter.guestNavigation.name}}</mat-card-content>
+</mat-card>
