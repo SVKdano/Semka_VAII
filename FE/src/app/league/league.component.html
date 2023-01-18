@@ -2,7 +2,7 @@
 <app-innerleague-navbar></app-innerleague-navbar>
 <h2><b><i>{{teams[0].league}} okresná stolnotenisová liga</i></b></h2>
 <mat-card *ngFor="let team of teams">
-  <mat-card-content>{{team.name}}</mat-card-content>
+  <mat-card-content><b>{{team.name}}</b></mat-card-content>
   <span class="example-spacer"></span>
   <mat-card-content>
     <button mat-stroked-button color="warn" routerLink="place/{{team.id}}">Hracia miestnosť</button>
