@@ -11,4 +11,9 @@ mat-toolbar {
   justify-content: flex-start;
 }
 
+@media only screen and (max-width: 768px) {
+  button {
+    min-width: 50%;
+  }
+}
 

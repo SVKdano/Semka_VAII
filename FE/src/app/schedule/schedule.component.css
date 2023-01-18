@@ -2,6 +2,10 @@
   padding-top: 0;
 }
 
+.panel {
+  margin-top: .5%;
+}
+
 mat-card-content {
   min-width: 20%;
 }
@@ -17,5 +21,10 @@ mat-card {
   flex: 2 1 auto;
 }
 
+@media only screen and (max-width: 768px) {
+  .id mat-card-content {
+    padding-left: 30%;
+  }
+}
 
 
