@@ -1,10 +1,10 @@
 <p>
-  <mat-toolbar>
-    <button mat-raised-button color="warn" routerLink="leagueFive">
+  <mat-toolbar *ngIf="teams">
+    <button mat-raised-button color="warn" routerLink="/league/{{teams[0].league}}">
       Tímy
     </button>
 
-    <button mat-raised-button color="warn" routerLink="leagueSix">
+    <button mat-raised-button color="warn" routerLink="schedule">
       Rozpis
     </button>
   </mat-toolbar>

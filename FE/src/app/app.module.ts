@@ -12,11 +12,10 @@ import {HttpClientModule} from "@angular/common/http";
 import { LeagueNavbarComponent } from './league-navbar/league-navbar.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
-import { LigaPatComponent } from './liga-pat/liga-pat.component';
-import { LigaSestComponent } from './liga-sest/liga-sest.component';
-import { LigaSedemComponent } from './liga-sedem/liga-sedem.component';
 import { InnerleagueNavbarComponent } from './innerleague-navbar/innerleague-navbar.component';
 import {MatCardModule} from "@angular/material/card";
+import { ScheduleComponent } from './schedule/schedule.component';
+import { LeagueComponent } from './league/league.component';
 
 @NgModule({
   declarations: [
@@ -24,10 +23,9 @@ import {MatCardModule} from "@angular/material/card";
     HeaderComponent,
     WelcomeComponent,
     LeagueNavbarComponent,
-    LigaPatComponent,
-    LigaSestComponent,
-    LigaSedemComponent,
-    InnerleagueNavbarComponent
+    InnerleagueNavbarComponent,
+    ScheduleComponent,
+    LeagueComponent
   ],
   imports: [
     BrowserModule,

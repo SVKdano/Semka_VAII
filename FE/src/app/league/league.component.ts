@@ -1,15 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
 import {Team} from "../models/teams";
 import {TeamsServiceService} from "../services/teams-service.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
-  selector: 'app-innerleague-navbar',
-  templateUrl: './innerleague-navbar.component.html',
-  styleUrls: ['./innerleague-navbar.component.css']
+  selector: 'app-league',
+  templateUrl: './league.component.html',
+  styleUrls: ['./league.component.css']
 })
-export class InnerleagueNavbarComponent implements OnInit {
-
+export class LeagueComponent  implements OnInit {
   teams: Team[] = [];
 
   constructor(private teamService: TeamsServiceService,
@@ -21,5 +20,4 @@ export class InnerleagueNavbarComponent implements OnInit {
     this.teamService.getTeams(id).subscribe((result: Team[]) => (this.teams = result));
     setTimeout(() => { this.ngOnInit() }, 1000);
   }
-
 }

@@ -17,3 +17,16 @@ mat-card-content {
 .example-spacer {
   flex: 1 1 auto;
 }
+
+p {
+  margin: 0;
+}
+
+button {
+  min-width: 10%;
+  margin-right: 2%;
+}
+
+mat-toolbar {
+  justify-content: flex-start;
+}

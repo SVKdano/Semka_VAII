@@ -39,7 +39,8 @@ namespace SemestralkaBE.Controllers
                 Guest = a.Guest,
                 GuestNavigation = a.GuestNavigation,
                 Host = b.Id,
-                HostNavigation = b
+                HostNavigation = b,
+                Round = a.Round
             }).Where(c => c.GuestNavigation.League == leagueId)
                 .ToListAsync());
         }
