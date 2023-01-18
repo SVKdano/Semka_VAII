@@ -11,6 +11,10 @@ export class LigaSedemComponent {
   teams: Team[] = [];
 
   constructor(private teamService: TeamsServiceService) {
+  }
+
+  ngOnInit() : void {
     this.teamService.getTeams(7).subscribe((result: Team[]) => (this.teams = result));
+    setTimeout(() => { this.ngOnInit() }, 1000);
   }
 }

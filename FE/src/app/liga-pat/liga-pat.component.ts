@@ -11,7 +11,11 @@ export class LigaPatComponent {
   teams: Team[] = [];
 
   constructor(private teamService: TeamsServiceService) {
+  }
+
+  ngOnInit() : void {
     this.teamService.getTeams(5).subscribe((result: Team[]) => (this.teams = result));
+    setTimeout(() => { this.ngOnInit() }, 1000);
   }
 
 }
