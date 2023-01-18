@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import {Schedule} from "../models/schedule";
+import {Place} from "../models/place";
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +20,9 @@ export class TeamsServiceService {
 
   public getSchedule(league: number) : Observable<Schedule[]> {
     return this.http.get<Schedule[]>(`${environment.apiUrl}/schedule/${league}`);
+  }
+
+  public getPlaces(id: number) : Observable<Place[]> {
+    return this.http.get<Place[]>(`${environment.apiUrl}/place/${id}`);
   }
 }

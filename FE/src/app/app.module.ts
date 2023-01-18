@@ -17,6 +17,7 @@ import {MatCardModule} from "@angular/material/card";
 import { ScheduleComponent } from './schedule/schedule.component';
 import { LeagueComponent } from './league/league.component';
 import { SortPipe } from './pipe/sort.pipe';
+import { PlaceComponent } from './place/place.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SortPipe } from './pipe/sort.pipe';
     InnerleagueNavbarComponent,
     ScheduleComponent,
     LeagueComponent,
-    SortPipe
+    SortPipe,
+    PlaceComponent
   ],
   imports: [
     BrowserModule,

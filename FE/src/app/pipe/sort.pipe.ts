@@ -15,7 +15,6 @@ export class SortPipe implements PipeTransform {
       } else {
         return 1;
       }
-      return 0;
     });
   }
 

@@ -1,0 +1,11 @@
+<app-header></app-header>
+<app-innerleague-navbar></app-innerleague-navbar>
+<mat-card *ngFor="let onePlace of place">
+  <h3>Hracia miestnosť tímu: </h3> <br>
+  <h2>{{onePlace.team.name}}</h2>
+  <mat-card-content>
+    {{onePlace.address}}
+  </mat-card-content>
+  <mat-card-content><img src="assets/images/index.png" alt="Placeholder obrazka hracej miestnosti"></mat-card-content>
+</mat-card>
+

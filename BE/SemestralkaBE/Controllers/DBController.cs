@@ -4,7 +4,7 @@ using SemestralkaBE.Models;
 
 namespace SemestralkaBE.Controllers
 {
-    [Route("api/[controller]")]
+   
     [ApiController]
     public class DBController : ControllerBase
     {
@@ -46,6 +46,19 @@ namespace SemestralkaBE.Controllers
                 Round = a.Round
             }).Where(c => c.GuestNavigation.League == leagueId)
                 .ToListAsync());
+        }
+
+        [HttpGet("place/{teamId}")]
+        public async Task<ActionResult<List<Team>>> GetPlace(int teamId)
+        {
+            return Ok(await _dbContext.Places.Join(_dbContext.Teams, a => a.TeamId, b => b.Id,
+                (a, b) => new Place()
+                {
+                    Id = a.Id,
+                    TeamId = a.TeamId,
+                    Address = a.Address,
+                    Team = b
+                }).Where(c => c.TeamId == teamId).ToListAsync());
         }
     }
 }
