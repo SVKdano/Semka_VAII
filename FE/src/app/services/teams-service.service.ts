@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import {Schedule} from "../models/schedule";
 import {Place} from "../models/place";
+import {Player} from "../models/player";
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +25,9 @@ export class TeamsServiceService {
 
   public getPlaces(id: number) : Observable<Place[]> {
     return this.http.get<Place[]>(`${environment.apiUrl}/place/${id}`);
+  }
+
+  public getPlayer(team: number) : Observable<Player[]> {
+    return this.http.get<Player[]>(`${environment.apiUrl}/players/${team}`);
   }
 }

@@ -18,6 +18,7 @@ import { ScheduleComponent } from './schedule/schedule.component';
 import { LeagueComponent } from './league/league.component';
 import { SortPipe } from './pipe/sort.pipe';
 import { PlaceComponent } from './place/place.component';
+import { PlayerListComponent } from './player-list/player-list.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { PlaceComponent } from './place/place.component';
     ScheduleComponent,
     LeagueComponent,
     SortPipe,
-    PlaceComponent
+    PlaceComponent,
+    PlayerListComponent
   ],
   imports: [
     BrowserModule,

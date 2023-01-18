@@ -8,7 +8,7 @@ import {ActivatedRoute} from "@angular/router";
   templateUrl: './league.component.html',
   styleUrls: ['./league.component.css']
 })
-export class LeagueComponent  implements OnInit {
+export class LeagueComponent implements OnInit {
   teams: Team[] = [];
 
   constructor(private teamService: TeamsServiceService,

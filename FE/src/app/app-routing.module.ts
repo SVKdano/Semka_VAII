@@ -4,12 +4,14 @@ import {WelcomeComponent} from "./welcome/welcome.component";
 import {ScheduleComponent} from "./schedule/schedule.component";
 import {LeagueComponent} from "./league/league.component";
 import {PlaceComponent} from "./place/place.component";
+import {PlayerListComponent} from "./player-list/player-list.component";
 
 const routes: Routes = [
   { path: "", component: WelcomeComponent },
   { path: "league/:id", component: LeagueComponent},
   { path: "league/:id/schedule", component: ScheduleComponent},
   { path: "league/:id/place/:placeId", component: PlaceComponent},
+  { path: "league/:id/players/:teamId", component: PlayerListComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

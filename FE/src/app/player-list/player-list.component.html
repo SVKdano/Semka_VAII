@@ -1,0 +1,9 @@
+<app-header></app-header>
+<app-innerleague-navbar></app-innerleague-navbar>
+<div class="wrap">
+<mat-card *ngFor="let player of players">
+  <mat-card-content><img src="assets/images/index.png" alt="Picture of player"></mat-card-content>
+  <mat-card-content>{{player.name}}</mat-card-content>
+  <mat-card-content class="surname">{{player.surname}}</mat-card-content>
+</mat-card>
+</div>
