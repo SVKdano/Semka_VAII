@@ -220,6 +220,10 @@ public partial class PostgresContext : DbContext
             entity.Property(e => e.Password)
                 .HasColumnType("character varying")
                 .HasColumnName("password");
+            entity.Property(e => e.Token)
+                .HasColumnType("character varying")
+                .HasColumnName("token");
+            entity.Property(e => e.Verifieddate).HasColumnName("verifieddate");
         });
 
         OnModelCreatingPartial(modelBuilder);

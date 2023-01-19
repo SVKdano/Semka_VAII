@@ -10,4 +10,8 @@ public partial class User
     public string Email { get; set; } = null!;
 
     public string Password { get; set; } = null!;
+
+    public string? Token { get; set; }
+
+    public DateOnly? Verifieddate { get; set; }
 }

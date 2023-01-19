@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SemestralkaBE.Models;
@@ -77,12 +78,57 @@ namespace SemestralkaBE.Controllers
             {
                 Email = request.Email,
                 Password = request.Password,
+                Token = CreateToken()
             };
 
             _dbContext.Users.Add(user);
             await _dbContext.SaveChangesAsync();
 
             return Ok(user);
+        }
+        
+        
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(UserRegisterRequest request)
+        {
+            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
+
+            if (user == null)
+            {
+                return BadRequest("Wrong email");
+            }
+
+            if (user.Password != request.Password)
+            {
+                return BadRequest("Wrong password");
+            }
+
+            if (user.Verifieddate == null)
+            {
+                return BadRequest("Not verified");
+            }
+
+            return Ok($"Logged as, {user.Email}");
+        }
+        
+        [HttpPost("verify")]
+        public async Task<IActionResult> Verify(string token)
+        {
+            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Token == token);
+
+            if (user == null)
+            {
+                return BadRequest("Invalid token");
+            }
+
+            user.Verifieddate = DateOnly.FromDateTime(DateTime.Now);
+            await  _dbContext.SaveChangesAsync();
+            return Ok("User verified");
+        }
+
+        private string CreateToken()
+        {
+            return Convert.ToHexString(RandomNumberGenerator.GetBytes(64));
         }
     }
 }
