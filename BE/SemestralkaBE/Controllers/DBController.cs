@@ -103,27 +103,7 @@ namespace SemestralkaBE.Controllers
                 return BadRequest("Wrong password");
             }
 
-            if (user.Verifieddate == null)
-            {
-                return BadRequest("Not verified");
-            }
-
-            return Ok($"Logged as, {user.Email}");
-        }
-        
-        [HttpPost("verify")]
-        public async Task<IActionResult> Verify(string token)
-        {
-            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Token == token);
-
-            if (user == null)
-            {
-                return BadRequest("Invalid token");
-            }
-
-            user.Verifieddate = DateOnly.FromDateTime(DateTime.Now);
-            await  _dbContext.SaveChangesAsync();
-            return Ok("User verified");
+            return Ok($"{user.Email}");
         }
 
         private string CreateToken()

@@ -5,9 +5,9 @@
 <div>
   <mat-card>
     <mat-card-content>
-      <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <form [formGroup]="loginForm">
         <mat-form-field>
-          <input type="email" matInput placeholder="Email" formControlName="email">
+          <input type="email" matInput placeholder="Email" formControlName="email" [(ngModel)]="user.email">
           <mat-error *ngIf="this.loginForm.get('email')?.touched && this.loginForm.get('email')?.hasError('required')">
             Email is required</mat-error>
           <mat-error *ngIf="this.loginForm.get('email')?.touched && this.loginForm.get('email')?.hasError('email')">
@@ -15,13 +15,16 @@
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input type="password" matInput placeholder="Password" formControlName="password">
+          <input type="password" matInput placeholder="Password" formControlName="password" [(ngModel)]="user.password">
           <mat-error
             *ngIf="this.loginForm.get('password')?.touched && this.loginForm.get('password')?.hasError('required')">
             Password is required</mat-error>
         </mat-form-field>
         <div class="button">
-          <button type="submit" mat-button [disabled]="!loginForm.valid">Login</button>
+          <button (click)="register(user)" type="submit" mat-raised-button [disabled]="!loginForm.valid">Register</button>
+        </div>
+        <div class="button">
+          <button (click)="login(user)" type="submit" mat-raised-button color="warn" [disabled]="!loginForm.valid">Login</button>
         </div>
       </form>
     </mat-card-content>
