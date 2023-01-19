@@ -19,4 +19,8 @@ export class AuthentificationService {
     return this.httpClient.post(`${environment.apiUrl}/login`, user, {responseType: "text"});
   }
 
+  public isLoggedIn() {
+    return localStorage.getItem("token") != null;
+  }
+
 }

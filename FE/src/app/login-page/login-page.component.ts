@@ -31,6 +31,8 @@ export class LoginPageComponent {
       return;
     }
     this.authService.login(user).subscribe((token: string) => {localStorage.setItem("token", token)});
+
+    this.router.navigate( ["/logged"]);
   }
 
 }

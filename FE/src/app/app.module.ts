@@ -24,6 +24,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
+import { LoggedUserComponent } from './logged-user/logged-user.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {MatInputModule} from "@angular/material/input";
     PlaceComponent,
     PlayerListComponent,
     ContactsComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    LoggedUserComponent
   ],
   imports: [
     BrowserModule,
