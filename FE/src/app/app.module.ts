@@ -22,9 +22,12 @@ import { PlayerListComponent } from './player-list/player-list.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import { LoggedUserComponent } from './logged-user/logged-user.component';
+import { PlayerUpdateComponent } from './player-update/player-update.component';
+import {MatSelectModule} from "@angular/material/select";
+import { PlaceUpdateComponent } from './place-update/place-update.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,9 @@ import { LoggedUserComponent } from './logged-user/logged-user.component';
     PlayerListComponent,
     ContactsComponent,
     LoginPageComponent,
-    LoggedUserComponent
+    LoggedUserComponent,
+    PlayerUpdateComponent,
+    PlaceUpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +59,9 @@ import { LoggedUserComponent } from './logged-user/logged-user.component';
     MatCardModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

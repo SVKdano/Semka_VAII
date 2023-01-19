@@ -1,0 +1,22 @@
+<app-header></app-header>
+<p>
+  <mat-toolbar>
+    <button mat-raised-button color="warn" routerLink="/logged">Back</button>
+    <span class="example-spacer"></span>
+    <button (click)="logout()" mat-raised-button color="primary">Logout</button>
+  </mat-toolbar>
+</p>
+
+<table>
+  <th>Id miesta</th>
+  <th>Addresa miesta</th>
+  <tr *ngFor="let place of places">
+  <td>{{place.id}}</td>
+  <td>{{place.address}}</td>
+  </tr>
+</table>
+
+<div class="delete">
+    <input [(ngModel)]="this.placeId" placeholder="Id" >
+<button (click)="deletePlace(this.placeId)" mat-raised-button color="warn" class="deleteB">Delete</button>
+</div>

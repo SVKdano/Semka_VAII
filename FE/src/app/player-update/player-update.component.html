@@ -1,0 +1,22 @@
+<app-header></app-header>
+<p>
+  <mat-toolbar>
+    <button mat-raised-button color="warn" routerLink="/logged">Back</button>
+    <span class="example-spacer"></span>
+    <button (click)="logout()" mat-raised-button color="primary">Logout</button>
+  </mat-toolbar>
+</p>
+
+<h2>Aktualizácia atribútov hráča</h2>
+
+<mat-form-field appearance="fill">
+  <mat-label>Liga</mat-label>
+  <input matInput [(ngModel)]="league">
+</mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label>Select</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let team of teamsFive">{{team.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+

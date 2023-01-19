@@ -18,7 +18,7 @@ export class PlayerListComponent implements OnInit {
   ngOnInit() : void {
     const id = Number(this.route.snapshot.paramMap.get('teamId'));
     this.teamService.getPlayer(id).subscribe((result: Player[]) => (this.players = result));
-    //setTimeout(() => { this.ngOnInit() }, 1000);
+    setTimeout(() => { this.ngOnInit() }, 1000);
   }
 
 }

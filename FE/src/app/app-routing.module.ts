@@ -9,6 +9,8 @@ import {ContactsComponent} from "./contacts/contacts.component";
 import {LoginPageComponent} from "./login-page/login-page.component";
 import {LoggedUserComponent} from "./logged-user/logged-user.component";
 import {AuthGuard} from "./guard/auth.guard";
+import {PlayerUpdateComponent} from "./player-update/player-update.component";
+import {PlaceUpdateComponent} from "./place-update/place-update.component";
 
 const routes: Routes = [
   { path: "", component: WelcomeComponent },
@@ -19,6 +21,8 @@ const routes: Routes = [
   { path: "league/:id/players/:teamId", component: PlayerListComponent},
   { path: "login", component: LoginPageComponent},
   { path: "logged", component: LoggedUserComponent, canActivate: [AuthGuard] },
+  { path: "logged/playerChanges", component: PlayerUpdateComponent, canActivate: [AuthGuard]},
+  { path: "logged/placeChanges", component: PlaceUpdateComponent, canActivate: [AuthGuard]},
   { path: "**", redirectTo: "", pathMatch: "full"},
 ];
 @NgModule({

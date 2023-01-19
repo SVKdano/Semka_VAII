@@ -87,6 +87,11 @@ namespace SemestralkaBE.Controllers
             return Ok(user);
         }
         
+        [HttpGet("places")]
+        public async Task<ActionResult<List<Place>>> GetPlaces()
+        {
+            return Ok(await _dbContext.Places.ToListAsync());
+        }
         
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserRegisterRequest request)
@@ -104,6 +109,22 @@ namespace SemestralkaBE.Controllers
             }
 
             return Ok($"{user.Email}");
+        }
+
+        [HttpDelete("{Id}")]
+        public async Task<ActionResult<List<Place>>> DeletePlace(int Id)
+        {
+            var dbPlace = await _dbContext.Places.FindAsync(Id);
+
+            if (dbPlace == null)
+            {
+                return BadRequest("Place not found");
+            }
+
+            _dbContext.Places.Remove(dbPlace);
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(await _dbContext.Places.ToListAsync());
         }
 
         private string CreateToken()
