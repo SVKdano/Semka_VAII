@@ -28,6 +28,7 @@ import { LoggedUserComponent } from './logged-user/logged-user.component';
 import { PlayerUpdateComponent } from './player-update/player-update.component';
 import {MatSelectModule} from "@angular/material/select";
 import { PlaceUpdateComponent } from './place-update/place-update.component';
+import { LeagueUpdateComponent } from './league-update/league-update.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { PlaceUpdateComponent } from './place-update/place-update.component';
     LoginPageComponent,
     LoggedUserComponent,
     PlayerUpdateComponent,
-    PlaceUpdateComponent
+    PlaceUpdateComponent,
+    LeagueUpdateComponent
   ],
   imports: [
     BrowserModule,
