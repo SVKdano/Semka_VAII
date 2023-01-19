@@ -1,7 +1,6 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnChanges, OnInit, Output} from '@angular/core';
 import {Router} from "@angular/router";
 import {TeamsServiceService} from "../services/teams-service.service";
-import {Team} from "../models/teams";
 import {Player} from "../models/player";
 
 @Component({
@@ -10,21 +9,19 @@ import {Player} from "../models/player";
   styleUrls: ['./player-update.component.css']
 })
 export class PlayerUpdateComponent implements OnInit {
-  league: number = 0;
-  teamNumber: number = 0;
-  teamsFive: Team[] = [];
-  teamsSix: Team[] = [];
-  teamsSeven: Team[] = [];
   players: Player[] = [];
+  playerId: number = 0;
+  @Output() update = new EventEmitter<Player[]>();
 
   constructor(private router:Router, private service:TeamsServiceService) {
   }
 
   ngOnInit() {
-    this.service.getTeams(5).subscribe((result: Team[]) => (this.teamsFive = result));
-    this.service.getTeams(6).subscribe((result: Team[]) => (this.teamsFive = result));
-    this.service.getTeams(7).subscribe((result: Team[]) => (this.teamsFive = result));
-    this.service.getPlayer(this.teamNumber).subscribe((result : Player[]) => (this.players = result));
+    this.service.getAllPlayers().subscribe((result : Player[]) => (this.players = result));
+  }
+
+  deletePlayer(Id: number) {
+    this.service.deletePlayer(this.playerId).subscribe((result: Player[]) => (this.update.emit(result)));
   }
 
   public logout() {

@@ -35,8 +35,15 @@ export class TeamsServiceService {
     return this.http.get<Place[]>(`${environment.apiUrl}/places`);
   }
 
+  public getAllPlayers(): Observable<Player[]> {
+    return this.http.get<Player[]>(`${environment.apiUrl}/players`);
+  }
+
   public deletePlace(id: number) : Observable<Place[]> {
     return this.http.delete<Place[]>(`${environment.apiUrl}/${id}`)
   }
 
+  public deletePlayer(id: number) : Observable<Player[]> {
+    return this.http.delete<Player[]>(`${environment.apiUrl}/delete/${id}`)
+  }
 }

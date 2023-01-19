@@ -3,20 +3,23 @@
   <mat-toolbar>
     <button mat-raised-button color="warn" routerLink="/logged">Back</button>
     <span class="example-spacer"></span>
+    <input [(ngModel)]="this.playerId" placeholder="Id" >
+    <button (click)="deletePlayer(this.playerId)" mat-raised-button color="warn" class="deleteB">Delete</button>
+    <span class="example-spacer"></span>
     <button (click)="logout()" mat-raised-button color="primary">Logout</button>
   </mat-toolbar>
 </p>
 
-<h2>Aktualizácia atribútov hráča</h2>
-
-<mat-form-field appearance="fill">
-  <mat-label>Liga</mat-label>
-  <input matInput [(ngModel)]="league">
-</mat-form-field>
-<mat-form-field appearance="fill">
-  <mat-label>Select</mat-label>
-  <mat-select>
-    <mat-option *ngFor="let team of teamsFive">{{team.name}}</mat-option>
-  </mat-select>
-</mat-form-field>
+<table>
+  <th>Číslo hráča</th>
+  <th>Id tímu hráča</th>
+  <th>Meno</th>
+  <th>Priezvisko</th>
+  <tr *ngFor="let playa of players">
+    <td>{{playa.id}}</td>
+    <td>{{playa.teamId}}</td>
+    <td>{{playa.name}}</td>
+    <td>{{playa.surname}}</td>
+  </tr>
+</table>
 

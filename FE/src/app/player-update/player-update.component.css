@@ -5,3 +5,13 @@ p {
 .example-spacer {
   flex: 2 1 auto;
 }
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+input {
+  min-height: 28px;
+}

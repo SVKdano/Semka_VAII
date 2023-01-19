@@ -67,6 +67,20 @@ namespace SemestralkaBE.Controllers
         {
             return Ok(await _dbContext.Players.Where(a => a.TeamId == teamId).ToListAsync());
         }
+        
+        
+        [HttpGet("players")]
+        public async Task<ActionResult<List<Place>>> GetPlayers()
+        {
+            return Ok(await _dbContext.Players.ToListAsync());
+        }
+        
+        
+        [HttpGet("places")]
+        public async Task<ActionResult<List<Place>>> GetPlaces()
+        {
+            return Ok(await _dbContext.Places.ToListAsync());
+        }
 
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserRegisterRequest request)
@@ -85,12 +99,6 @@ namespace SemestralkaBE.Controllers
             await _dbContext.SaveChangesAsync();
 
             return Ok(user);
-        }
-        
-        [HttpGet("places")]
-        public async Task<ActionResult<List<Place>>> GetPlaces()
-        {
-            return Ok(await _dbContext.Places.ToListAsync());
         }
         
         [HttpPost("login")]
@@ -125,6 +133,22 @@ namespace SemestralkaBE.Controllers
             await _dbContext.SaveChangesAsync();
 
             return Ok(await _dbContext.Places.ToListAsync());
+        }
+
+        [HttpDelete("/delete/{PlayerId}")]
+        public async Task<ActionResult<List<Player>>> deletePlayer(int PlayerId)
+        {
+            var dbPlayer = await _dbContext.Players.FindAsync(PlayerId);
+
+            if (dbPlayer == null)
+            {
+                return BadRequest("Player not found");
+            }
+
+            _dbContext.Players.Remove(dbPlayer);
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(await _dbContext.Players.ToListAsync());
         }
 
         private string CreateToken()
