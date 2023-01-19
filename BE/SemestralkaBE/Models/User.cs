@@ -3,9 +3,11 @@ using System.Collections.Generic;
 
 namespace SemestralkaBE.Models;
 
-public partial class League
+public partial class User
 {
     public int Id { get; set; }
 
-    public virtual ICollection<Team> Teams { get; } = new List<Team>();
+    public string Email { get; set; } = null!;
+
+    public string Password { get; set; } = null!;
 }

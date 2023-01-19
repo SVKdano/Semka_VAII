@@ -20,6 +20,10 @@ import { SortPipe } from './pipe/sort.pipe';
 import { PlaceComponent } from './place/place.component';
 import { PlayerListComponent } from './player-list/player-list.component';
 import { ContactsComponent } from './contacts/contacts.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -33,7 +37,8 @@ import { ContactsComponent } from './contacts/contacts.component';
     SortPipe,
     PlaceComponent,
     PlayerListComponent,
-    ContactsComponent
+    ContactsComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,10 @@ import { ContactsComponent } from './contacts/contacts.component';
     HttpClientModule,
     MatButtonModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

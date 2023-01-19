@@ -6,6 +6,7 @@ import {LeagueComponent} from "./league/league.component";
 import {PlaceComponent} from "./place/place.component";
 import {PlayerListComponent} from "./player-list/player-list.component";
 import {ContactsComponent} from "./contacts/contacts.component";
+import {LoginPageComponent} from "./login-page/login-page.component";
 
 const routes: Routes = [
   { path: "", component: WelcomeComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: "league/:id/schedule", component: ScheduleComponent},
   { path: "league/:id/place/:placeId", component: PlaceComponent},
   { path: "league/:id/players/:teamId", component: PlayerListComponent},
+  { path: "login", component: LoginPageComponent},
   { path: "**", redirectTo: "", pathMatch: "full"},
 ];
 @NgModule({

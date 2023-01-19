@@ -66,5 +66,23 @@ namespace SemestralkaBE.Controllers
         {
             return Ok(await _dbContext.Players.Where(a => a.TeamId == teamId).ToListAsync());
         }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(UserRegisterRequest request)
+        {
+            if (_dbContext.Users.Any(u => u.Email == request.Email))
+                return BadRequest("User already exists");
+
+            var user = new User
+            {
+                Email = request.Email,
+                Password = request.Password,
+            };
+
+            _dbContext.Users.Add(user);
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(user);
+        }
     }
 }
