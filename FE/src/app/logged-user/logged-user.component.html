@@ -1,2 +1,41 @@
 <app-header></app-header>
-<button (click)="logout()" mat-raised-button color="primary">Logout</button>
+<p>
+  <mat-toolbar>
+    <button (click)="logout()" mat-raised-button color="primary">Logout</button>
+  </mat-toolbar>
+</p>
+<div class="container">
+  <mat-card>
+    <h2>Úprava hráčov</h2>
+    <mat-card-content>
+      <button mat-raised-button color="primary">Update</button>
+      <button mat-raised-button color="warn">Delete</button>
+      <button mat-raised-button color="link">Add</button>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <h2>Úprava hracích miest</h2>
+    <mat-card-content>
+      <button mat-raised-button color="primary">Update</button>
+      <button mat-raised-button color="warn">Delete</button>
+      <button mat-raised-button color="link">Add</button>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <h2>Úprava tímov</h2>
+    <mat-card-content>
+      <button mat-raised-button color="primary" class="solo">Update</button>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <h2>Úprava zápasov</h2>
+    <mat-card-content>
+      <button mat-raised-button color="primary">Update</button>
+      <button mat-raised-button color="warn">Delete</button>
+      <button mat-raised-button color="link">Add</button>
+    </mat-card-content>
+  </mat-card>
+</div>
