@@ -20,11 +20,13 @@
             *ngIf="this.loginForm.get('password')?.touched && this.loginForm.get('password')?.hasError('required')">
             Password is required</mat-error>
         </mat-form-field>
-        <div class="button">
-          <button (click)="register(user)" type="submit" mat-raised-button [disabled]="!loginForm.valid">Register</button>
-        </div>
-        <div class="button">
-          <button (click)="login(user)" type="submit" mat-raised-button color="warn" [disabled]="!loginForm.valid">Login</button>
+        <div class="flexD">
+          <div class="button">
+            <button (click)="register(user)" type="submit" mat-raised-button [disabled]="!loginForm.valid">Register</button>
+          </div>
+          <div class="button">
+            <button (click)="login(user)" type="submit" mat-raised-button color="warn" [disabled]="!loginForm.valid">Login</button>
+          </div>
         </div>
       </form>
     </mat-card-content>
