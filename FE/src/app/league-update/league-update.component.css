@@ -1,0 +1,13 @@
+p {
+  margin: 0;
+}
+
+.example-spacer {
+  flex: 2 1 auto;
+}
+
+table {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}

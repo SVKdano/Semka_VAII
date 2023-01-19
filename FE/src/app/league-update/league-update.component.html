@@ -1,1 +1,26 @@
-<p>league-update works!</p>
+<app-header></app-header>
+<p>
+  <mat-toolbar>
+    <button mat-raised-button color="warn" routerLink="/logged">Back</button>
+    <span class="example-spacer"></span>
+    <button (click)="logout()" mat-raised-button color="primary">Logout</button>
+  </mat-toolbar>
+</p>
+
+<table>
+  <th>Číslo ligy</th>
+  <th>Nazov ligy</th>
+  <tr *ngFor="let liga of leagues">
+    <td>{{liga.id}}</td>
+    <td>{{liga.name}}</td>
+  </tr>
+</table>
+
+<div>
+<input [(ngModel)]="this.leagueId" placeholder="id">
+<input [(ngModel)]="this.leagueName" placeholder="name">
+</div>
+
+
+
+

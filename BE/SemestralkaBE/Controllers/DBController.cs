@@ -82,6 +82,12 @@ namespace SemestralkaBE.Controllers
             return Ok(await _dbContext.Places.ToListAsync());
         }
 
+        [HttpGet("/allLeagues")]
+        public async Task<ActionResult<List<League>>> GetAllLeagues()
+        {
+            return Ok(await _dbContext.Leagues.ToListAsync());
+        }
+
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserRegisterRequest request)
         {

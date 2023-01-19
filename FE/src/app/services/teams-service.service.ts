@@ -6,6 +6,8 @@ import {environment} from "../../environments/environment";
 import {Schedule} from "../models/schedule";
 import {Place} from "../models/place";
 import {Player} from "../models/player";
+import {League} from "../models/league";
+import {LeagueUpdateComponent} from "../league-update/league-update.component";
 
 @Injectable({
   providedIn: 'root'
@@ -45,5 +47,21 @@ export class TeamsServiceService {
 
   public deletePlayer(id: number) : Observable<Player[]> {
     return this.http.delete<Player[]>(`${environment.apiUrl}/delete/${id}`)
+  }
+
+  public getAllLeagues() :Observable<League[]> {
+    return this.http.get<League[]>(`${environment.apiUrl}/allLeagues`);
+  }
+
+  public updateLeague(league: League) : Observable<League[]> {
+    return this.http.get<League[]>(`${environment.apiUrl}/update`);
+  }
+
+  public deleteLeague(id: number) : Observable<League[]> {
+    return this.http.delete<League[]>(`${environment.apiUrl}/leagueDelete/${id}`);
+  }
+
+  public createLeague(liga: League) : Observable<League[]> {
+  return this.http.post<League[]>(`${environment.apiUrl}/newleague`,liga);
   }
 }

@@ -11,6 +11,7 @@ import {LoggedUserComponent} from "./logged-user/logged-user.component";
 import {AuthGuard} from "./guard/auth.guard";
 import {PlayerUpdateComponent} from "./player-update/player-update.component";
 import {PlaceUpdateComponent} from "./place-update/place-update.component";
+import {LeagueUpdateComponent} from "./league-update/league-update.component";
 
 const routes: Routes = [
   { path: "", component: WelcomeComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: "logged", component: LoggedUserComponent, canActivate: [AuthGuard] },
   { path: "logged/playerChanges", component: PlayerUpdateComponent, canActivate: [AuthGuard]},
   { path: "logged/placeChanges", component: PlaceUpdateComponent, canActivate: [AuthGuard]},
+  { path: "logged/leagueChanges", component: LeagueUpdateComponent, canActivate: [AuthGuard]},
   { path: "**", redirectTo: "", pathMatch: "full"},
 ];
 @NgModule({
