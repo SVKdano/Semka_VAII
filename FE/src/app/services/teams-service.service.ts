@@ -25,8 +25,8 @@ export class TeamsServiceService {
     return this.http.get<Schedule[]>(`${environment.apiUrl}/schedule/${league}`);
   }
 
-  public getPlaces(id: number) : Observable<Place[]> {
-    return this.http.get<Place[]>(`${environment.apiUrl}/place/${id}`);
+  public getPlaces(teamId: number) : Observable<Place[]> {
+    return this.http.get<Place[]>(`${environment.apiUrl}/place/${teamId}`);
   }
 
   public getPlayer(team: number) : Observable<Player[]> {

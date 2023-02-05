@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace SemestralkaBE.Models;
 
@@ -23,13 +24,13 @@ public partial class Encounter
 
     public int Round { get; set; }
 
+    [JsonIgnore]
     public virtual ICollection<Double> Doubles { get; } = new List<Double>();
-
+    
     public virtual Team? GuestNavigation { get; set; }
-
+   
     public virtual Team HostNavigation { get; set; } = null!;
-
     public virtual Place PlaceNavigation { get; set; } = null!;
-
+    [JsonIgnore]
     public virtual ICollection<Single> Singles { get; } = new List<Single>();
 }

@@ -17,7 +17,4 @@ export class ScheduleComponent {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.teamService.getSchedule(id).subscribe((result: Schedule[]) => (this.schedule = result));
   }
-
-
-
 }

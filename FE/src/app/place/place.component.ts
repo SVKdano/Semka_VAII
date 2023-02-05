@@ -10,7 +10,6 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./place.component.css']
 })
 export class PlaceComponent {
-  teams: Team[] = [];
   place: Place[] = [];
 
   constructor(private teamService: TeamsServiceService,
@@ -18,10 +17,9 @@ export class PlaceComponent {
   }
 
   ngOnInit() : void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
     const placeId = Number(this.route.snapshot.paramMap.get('placeId'));
-    this.teamService.getTeams(id).subscribe((result: Team[]) => (this.teams = result));
     this.teamService.getPlaces(placeId).subscribe((result: Place[]) => (this.place = result));
-    setTimeout(() => { this.ngOnInit() }, 1000);
+    //console.log(this.place);
+    //setTimeout(() => { this.ngOnInit() }, 1000);
   }
 }
