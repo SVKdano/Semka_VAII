@@ -25,7 +25,8 @@
   </div>
   <span class="example-spacer"></span>
   <mat-card-content>{{encounter.hostNavigation.name}}</mat-card-content>
-  <mat-card-content>{{encounter.guestNavigation.name}}</mat-card-content>
+  <mat-card-content *ngIf="encounter.guestNavigation">{{encounter.guestNavigation.name}}</mat-card-content>
+  <mat-card-content *ngIf="!encounter.guestNavigation">-</mat-card-content>
   <mat-card-content>{{encounter.date | date: "dd.MM.yyyy"}} {{encounter.time | slice:0:5}}</mat-card-content>
   <mat-card-content>{{encounter.hostsWins}}:{{encounter.guestsWins}}</mat-card-content>
 </mat-card>

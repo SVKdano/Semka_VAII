@@ -46,7 +46,7 @@ namespace SemestralkaBE.Controllers
                 HostNavigation = b,
                 Round = a.Round,
                 PlaceNavigation = a.PlaceNavigation,
-            }).Where(c => c.GuestNavigation.League == leagueId)
+            }).Where(c => c.HostNavigation.League == leagueId)
                 .ToListAsync());
         }
 
@@ -74,7 +74,7 @@ namespace SemestralkaBE.Controllers
                         HostNavigation = b,
                         Round = a.Round,
                         PlaceNavigation = a.PlaceNavigation,
-                    }).Where(c => c.GuestNavigation.League == leagueId && c.Round == round)
+                    }).Where(c => c.HostNavigation.League == leagueId && c.Round == round)
                 .ToListAsync());
         }
 

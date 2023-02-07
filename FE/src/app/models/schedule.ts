@@ -12,7 +12,7 @@ export class Schedule {
   hostWins: number = 1;
   guestWins: number = 1;
   hostNavigation!: Team;
-  guestNavigation!: Team;
+  guestNavigation?: Team;
   placeNavigation ?: number;
   doubles?: [];
   singles?: [];
