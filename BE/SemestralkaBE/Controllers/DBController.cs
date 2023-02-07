@@ -50,6 +50,34 @@ namespace SemestralkaBE.Controllers
                 .ToListAsync());
         }
 
+        [HttpGet("/rounds/{leagueId}")]
+        public int GetLeagueRounds(int leagueId)
+        {
+            return _dbContext.Encounters.Where(c => c.GuestNavigation.League == leagueId).Max(d => d.Round);
+        }
+
+        [HttpGet("/schedule/{leagueId}/{round}")]
+        public async Task<ActionResult<List<Encounter>>> GetScheduleWithRound(int leagueId, int round)
+        {
+            return Ok(await _dbContext.Encounters.Join(_dbContext.Teams, a => a.Host, b => b.Id
+                    , (a,b) => new Encounter()
+                    {
+                        Id = a.Id,
+                        Date = a.Date,
+                        Time = a.Time,
+                        Place = a.Place,
+                        Guest = a.Guest,
+                        GuestNavigation = a.GuestNavigation,
+                        Host = b.Id,
+                        HostsWins = a.HostsWins,
+                        GuestsWins = a.GuestsWins,
+                        HostNavigation = b,
+                        Round = a.Round,
+                        PlaceNavigation = a.PlaceNavigation,
+                    }).Where(c => c.GuestNavigation.League == leagueId && c.Round == round)
+                .ToListAsync());
+        }
+
         [HttpGet("place/{teamId}")]
         public async Task<ActionResult<List<Place>>> GetPlace(int teamId)
         {

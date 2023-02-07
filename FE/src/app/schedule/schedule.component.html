@@ -1,5 +1,14 @@
 <app-header></app-header>
 <app-innerleague-navbar></app-innerleague-navbar>
+
+<mat-form-field appearance="fill">
+  <mat-label>Vyber kolo</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let index of [].constructor(this.rounds); let i = index"
+                value=i+1 (click)="setValue(i+1); changedRound()">{{i+1}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
 <mat-card class="panel">
   <div class="id">
   <mat-card-content><b><i>Číslo zápasu</i></b></mat-card-content>

@@ -6,6 +6,7 @@ export class Schedule {
   date?: Date;
   time?: Time;
   place: number = 0;
+  round: number = 0;
   host: number = 0;
   guest: number = 0;
   hostWins: number = 1;

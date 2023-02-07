@@ -18,6 +18,5 @@ export class LeagueComponent implements OnInit {
   ngOnInit() : void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.teamService.getTeams(id).subscribe((result: Team[]) => (this.teams = result));
-    //setTimeout(() => { this.ngOnInit() }, 1000);
   }
 }

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {Team} from "../models/teams";
 import {Place} from "../models/place";
 import {TeamsServiceService} from "../services/teams-service.service";
 import {ActivatedRoute} from "@angular/router";
@@ -19,7 +18,5 @@ export class PlaceComponent {
   ngOnInit() : void {
     const placeId = Number(this.route.snapshot.paramMap.get('placeId'));
     this.teamService.getPlaces(placeId).subscribe((result: Place[]) => (this.place = result));
-    //console.log(this.place);
-    //setTimeout(() => { this.ngOnInit() }, 1000);
   }
 }

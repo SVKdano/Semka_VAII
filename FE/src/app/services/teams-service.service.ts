@@ -25,6 +25,10 @@ export class TeamsServiceService {
     return this.http.get<Schedule[]>(`${environment.apiUrl}/schedule/${league}`);
   }
 
+  public getScheduleOfRound(league: number, round: number) : Observable<Schedule[]> {
+    return this.http.get<Schedule[]>(`${environment.apiUrl}/schedule/${league}/${round}`);
+  }
+
   public getPlaces(teamId: number) : Observable<Place[]> {
     return this.http.get<Place[]>(`${environment.apiUrl}/place/${teamId}`);
   }
@@ -39,6 +43,10 @@ export class TeamsServiceService {
 
   public getAllPlayers(): Observable<Player[]> {
     return this.http.get<Player[]>(`${environment.apiUrl}/players`);
+  }
+
+  public getLeagueRounds(leagueId: number) : Observable<number> {
+    return this.http.get<number>(`${environment.apiUrl}/rounds/${leagueId}`);
   }
 
   public deletePlace(id: number) : Observable<Place[]> {
