@@ -23,7 +23,15 @@ export class LoginPageComponent {
   ) { }
 
   register(user: User) {
-    this.authService.register(user).subscribe();
+    this.authService.register(user).subscribe({
+      next:(response => {
+        alert(response.message);
+        this.loginForm.reset();
+      }),
+      error:(err => {
+        alert(err.error.message)
+    })
+    });
   }
 
   login(user: User) {

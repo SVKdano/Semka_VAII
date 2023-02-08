@@ -121,7 +121,10 @@ namespace SemestralkaBE.Controllers
         public async Task<IActionResult> Register(UserRegisterRequest request)
         {
             if (_dbContext.Users.Any(u => u.Email == request.Email))
-                return BadRequest("User already exists");
+                return BadRequest(new { Message = "User already exists"});
+
+            if (request.Password.Length < 6)
+                return BadRequest(new { Message = "Password to short." });
 
             var user = new User
             {
@@ -133,7 +136,7 @@ namespace SemestralkaBE.Controllers
             _dbContext.Users.Add(user);
             await _dbContext.SaveChangesAsync();
 
-            return Ok(user);
+            return Ok(new { Message = "Registration successful. Continue to login."});
         }
         
         [HttpPost("login")]
