@@ -2,6 +2,11 @@
   padding-top: 0;
 }
 
+.id {
+  min-width: 8%;
+  text-align: center;
+}
+
 .panel {
   margin-top: .5%;
 }
@@ -22,6 +27,7 @@ mat-card {
 
 mat-form-field {
   margin-left: 2%;
+  margin-top: 1%;
 }
 
 @media only screen and (max-width: 768px) {
