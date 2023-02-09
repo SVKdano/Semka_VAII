@@ -8,6 +8,17 @@ p {
 
 table {
   text-align: center;
-  margin-left: auto;
-  margin-right: auto;
+}
+
+
+.innerdata {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 1%;
+}
+
+.inputfields {
+  display: flex;
+  flex-direction: column;
 }

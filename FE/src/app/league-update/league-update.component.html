@@ -7,18 +7,41 @@
   </mat-toolbar>
 </p>
 
-<table>
-  <th>Číslo ligy</th>
-  <th>Nazov ligy</th>
-  <tr *ngFor="let liga of leagues">
-    <td>{{liga.id}}</td>
-    <td>{{liga.name}}</td>
-  </tr>
-</table>
+<div class="innerdata">
+  <div class="inputfields">
+    <b>Zadaj číslo ligy:</b>
+    <mat-form-field class="example-form-field">
+      <mat-label>League number</mat-label>
+      <input matInput type="text" [(ngModel)]="this.leagueId">
+    </mat-form-field>
 
-<div>
-<input [(ngModel)]="this.leagueId" placeholder="id">
-<input [(ngModel)]="this.leagueName" placeholder="name">
+    <b>Zadaj názov ligy:</b>
+    <mat-form-field class="example-form-field">
+      <mat-label>League name</mat-label>
+      <input matInput type="text" [(ngModel)]="this.leagueName">
+    </mat-form-field>
+
+    <div>
+    <td><button (click)="logout()" mat-raised-button color="primary">Pridaj</button></td>
+    <td><button (click)="logout()" mat-raised-button color="primary">Uprav</button></td>
+    </div>
+
+  </div>
+
+  <table>
+    <th>League number</th>
+    <th></th>
+    <th>League name</th>
+    <th></th>
+    <th></th>
+    <tr *ngFor="let liga of leagues">
+      <td>{{liga.id}}</td>
+      <td></td>
+      <td>{{liga.name}}</td>
+      <td><button (click)="logout()" mat-raised-button color="warn">Vymaž</button></td>
+      <td><button (click)="logout()" mat-raised-button color="primary">Uprav</button></td>
+    </tr>
+  </table>
 </div>
 
 
