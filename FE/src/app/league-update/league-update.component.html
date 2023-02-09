@@ -22,8 +22,8 @@
     </mat-form-field>
 
     <div>
-    <td><button (click)="logout()" mat-raised-button color="primary">Pridaj</button></td>
-    <td><button (click)="logout()" mat-raised-button color="primary">Uprav</button></td>
+    <td><button (click)="createLeague()" mat-raised-button color="basic">Pridaj</button></td>
+    <td><button (click)="updateLeague()" mat-raised-button color="primary">Uprav</button></td>
     </div>
 
   </div>
@@ -38,8 +38,8 @@
       <td>{{liga.id}}</td>
       <td></td>
       <td>{{liga.name}}</td>
-      <td><button (click)="logout()" mat-raised-button color="warn">Vymaž</button></td>
-      <td><button (click)="logout()" mat-raised-button color="primary">Uprav</button></td>
+      <td><button (click)="deleteLeague(liga.id)" mat-raised-button color="warn">Vymaž</button></td>
+      <td><button (click)="initializeUpdating(liga.id, liga.name)" mat-raised-button color="primary">Uprav</button></td>
     </tr>
   </table>
 </div>

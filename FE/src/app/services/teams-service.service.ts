@@ -7,7 +7,6 @@ import {Schedule} from "../models/schedule";
 import {Place} from "../models/place";
 import {Player} from "../models/player";
 import {League} from "../models/league";
-import {LeagueUpdateComponent} from "../league-update/league-update.component";
 
 @Injectable({
   providedIn: 'root'
@@ -62,7 +61,7 @@ export class TeamsServiceService {
   }
 
   public updateLeague(league: League) : Observable<League[]> {
-    return this.http.get<League[]>(`${environment.apiUrl}/update`);
+    return this.http.put<League[]>(`${environment.apiUrl}/update`, league);
   }
 
   public deleteLeague(id: number) : Observable<League[]> {
