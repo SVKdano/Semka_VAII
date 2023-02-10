@@ -1,7 +1,8 @@
 <app-header></app-header>
 <p>
   <mat-toolbar>
-    <button mat-raised-button color="warn" routerLink="/logged">Back</button>
+    <button mat-raised-button color="warn" routerLink="/logged" class="spacebetween">Back</button>
+    <button (click)="fetchData()" mat-raised-button color="warn" >Fetch data</button>
     <span class="example-spacer"></span>
     <button (click)="logout()" mat-raised-button color="primary">Logout</button>
   </mat-toolbar>
@@ -38,8 +39,8 @@
       <td>{{liga.id}}</td>
       <td></td>
       <td>{{liga.name}}</td>
-      <td><button (click)="deleteLeague(liga.id)" mat-raised-button color="warn">Vymaž</button></td>
-      <td><button (click)="initializeUpdating(liga.id, liga.name)" mat-raised-button color="primary">Uprav</button></td>
+      <td><button (click)="deleteLeague(liga.id); fetchData()" mat-raised-button color="warn">Vymaž</button></td>
+      <td><button (click)="initializeUpdating(liga.id, liga.name); fetchData()" mat-raised-button color="primary">Uprav</button></td>
     </tr>
   </table>
 </div>
