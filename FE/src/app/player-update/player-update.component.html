@@ -1,25 +1,54 @@
 <app-header></app-header>
 <p>
   <mat-toolbar>
-    <button mat-raised-button color="warn" routerLink="/logged">Back</button>
-    <span class="example-spacer"></span>
-    <input [(ngModel)]="this.playerId" placeholder="Id" >
-    <button (click)="deletePlayer(this.playerId)" mat-raised-button color="warn" class="deleteB">Delete</button>
+    <button mat-raised-button color="warn" routerLink="/logged" class="spacebetween">Back</button>
+    <button (click)="fetchData()" mat-raised-button color="warn" >Fetch data</button>
     <span class="example-spacer"></span>
     <button (click)="logout()" mat-raised-button color="primary">Logout</button>
   </mat-toolbar>
 </p>
 
-<table>
-  <th>Číslo hráča</th>
-  <th>Id tímu hráča</th>
-  <th>Meno</th>
-  <th>Priezvisko</th>
-  <tr *ngFor="let playa of players">
-    <td>{{playa.id}}</td>
-    <td>{{playa.teamId}}</td>
-    <td>{{playa.name}}</td>
-    <td>{{playa.surname}}</td>
-  </tr>
-</table>
+<div class="innerdata">
+  <div class="inputfields">
+    <b>Zadaj meno:</b>
+    <mat-form-field class="example-form-field">
+      <mat-label>Player name</mat-label>
+      <input matInput type="text" [(ngModel)]="this.playerName">
+    </mat-form-field>
 
+    <b>Zadaj priezvisko:</b>
+    <mat-form-field class="example-form-field">
+      <mat-label>Player surname</mat-label>
+      <input matInput type="text" [(ngModel)]="this.playerSurname">
+    </mat-form-field>
+
+    <b>Zadaj názov tímu:</b>
+    <mat-form-field class="example-form-field">
+      <mat-label>Team</mat-label>
+      <input matInput type="text" [(ngModel)]="this.playerTeamId">
+    </mat-form-field>
+
+    <div>
+      <td><button (click)="createPlayer()" mat-raised-button color="basic">Pridaj</button></td>
+      <td><button (click)="updatePlayer()" mat-raised-button color="primary">Uprav</button></td>
+    </div>
+  </div>
+
+
+  <table>
+    <th>Číslo hráča</th>
+    <th>Id tímu hráča</th>
+    <th>Meno</th>
+    <th>Priezvisko</th>
+    <th></th>
+    <th></th>
+    <tr *ngFor="let playa of players">
+      <td>{{playa.id}}</td>
+      <td>{{playa.teamId}}</td>
+      <td>{{playa.name}}</td>
+      <td>{{playa.surname}}</td>
+      <td><button (click)="deletePlayer(playa.id)" mat-raised-button color="warn">Vymaž</button></td>
+      <td><button (click)="initializeUpdating(playa.id, playa.name, playa.surname, playa.teamId); fetchData()" mat-raised-button color="primary">Uprav</button></td>
+    </tr>
+  </table>
+</div>

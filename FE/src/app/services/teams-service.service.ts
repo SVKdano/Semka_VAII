@@ -64,11 +64,19 @@ export class TeamsServiceService {
     return this.http.put<League[]>(`${environment.apiUrl}/leagueUpdate`, league);
   }
 
+  public updatePlayer(hrac: Player) : Observable<Player[]> {
+    return this.http.put<Player[]>(`${environment.apiUrl}/playerUpdate`, hrac);
+  }
+
   public deleteLeague(id: number) : Observable<League[]> {
     return this.http.delete<League[]>(`${environment.apiUrl}/leagueDelete/${id}`);
   }
 
   public createLeague(liga: League) : Observable<League[]> {
-  return this.http.post<League[]>(`${environment.apiUrl}/newleague`,liga);
+    return this.http.post<League[]>(`${environment.apiUrl}/newleague`,liga);
+  }
+
+  public createPlayer(hrac: Player) : Observable<Player[]> {
+    return this.http.post<Player[]>(`${environment.apiUrl}/newPlayer`, hrac);
   }
 }

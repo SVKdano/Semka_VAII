@@ -16,9 +16,9 @@ public partial class Team
     [JsonIgnore]
     public virtual ICollection<Encounter> EncounterHostNavigations { get; } = new List<Encounter>();
     [JsonIgnore]
-    public virtual League LeagueNavigation { get; set; } = null!;
+    public virtual League? LeagueNavigation { get; set; } = null!;
     [JsonIgnore]
     public virtual ICollection<Place> Places { get; } = new List<Place>();
     [JsonIgnore]
-    public virtual ICollection<Player> Players { get; } = new List<Player>();
+    public virtual ICollection<Player?>? Players { get; } = new List<Player?>();
 }

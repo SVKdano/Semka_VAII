@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace SemestralkaBE.Models;
 
@@ -9,5 +10,6 @@ public partial class League
 
     public string? Name { get; set; }
 
-    public virtual ICollection<Team> Teams { get; } = new List<Team>();
+    [JsonIgnore]
+    public virtual ICollection<Team>? Teams { get; } = new List<Team>();
 }

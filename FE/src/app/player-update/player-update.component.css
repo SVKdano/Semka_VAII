@@ -2,16 +2,23 @@ p {
   margin: 0;
 }
 
+.spacebetween {
+  margin-right: 1%;
+}
+
 .example-spacer {
   flex: 2 1 auto;
 }
 
-table {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
+.innerdata {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 1%;
 }
 
-input {
-  min-height: 28px;
+.inputfields {
+  display: flex;
+  flex-direction: column;
 }
+

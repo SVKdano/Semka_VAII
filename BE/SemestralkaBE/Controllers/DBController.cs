@@ -165,6 +165,24 @@ namespace SemestralkaBE.Controllers
 
             return Ok(await _dbContext.Leagues.ToListAsync());
         }
+        
+        [HttpPost("/newTeam")]
+        public async Task<IActionResult> AddNewTeam(Team team)
+        {
+            _dbContext.Teams.Add(team);
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(await _dbContext.Teams.ToListAsync());
+        }
+        
+        [HttpPost("/newPlayer")]
+        public async Task<IActionResult> AddNewPlayer(Player player)
+        {
+            _dbContext.Players.Add(player);
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(await _dbContext.Players.ToListAsync());
+        }
 
         [HttpDelete("{Id}")]
         public async Task<ActionResult<List<Place>>> DeletePlace(int Id)
@@ -229,6 +247,24 @@ namespace SemestralkaBE.Controllers
             await _dbContext.SaveChangesAsync();
 
             return Ok(await _dbContext.Leagues.ToListAsync());
+        }
+        
+        [HttpPut("playerUpdate")]
+        public async Task<ActionResult<List<League>>> UpdatePlayer(Player player)
+        {
+            var dbPlayer = await _dbContext.Players.FindAsync(player.Id);
+
+            if (dbPlayer == null)
+                return BadRequest("Not found");
+
+
+            dbPlayer.Name = player.Name;
+            dbPlayer.Surname = player.Surname;
+            dbPlayer.TeamId = player.TeamId;
+
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(await _dbContext.Players.ToListAsync());
         }
 
         private string CreateToken()

@@ -35,7 +35,7 @@
     <th>League name</th>
     <th></th>
     <th></th>
-    <tr *ngFor="let liga of leagues">
+    <tr *ngFor="let liga of (leagues | sort)">
       <td>{{liga.id}}</td>
       <td></td>
       <td>{{liga.name}}</td>
