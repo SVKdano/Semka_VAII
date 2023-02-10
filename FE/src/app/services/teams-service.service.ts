@@ -61,7 +61,7 @@ export class TeamsServiceService {
   }
 
   public updateLeague(league: League) : Observable<League[]> {
-    return this.http.put<League[]>(`${environment.apiUrl}/update`, league);
+    return this.http.put<League[]>(`${environment.apiUrl}/leagueUpdate`, league);
   }
 
   public deleteLeague(id: number) : Observable<League[]> {

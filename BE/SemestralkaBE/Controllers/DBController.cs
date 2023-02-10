@@ -214,7 +214,7 @@ namespace SemestralkaBE.Controllers
             return Ok(await _dbContext.Leagues.ToListAsync());
         }
 
-        [HttpPut("update")]
+        [HttpPut("leagueUpdate")]
         public async Task<ActionResult<List<League>>> UpdateLeague(League league)
         {
             var dbLeague = await _dbContext.Leagues.FindAsync(league.Id);
