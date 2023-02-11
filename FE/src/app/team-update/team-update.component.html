@@ -1,0 +1,52 @@
+<app-header></app-header>
+<p>
+  <mat-toolbar>
+    <button mat-raised-button color="warn" routerLink="/logged" class="spacebetween">Back</button>
+    <button (click)="fetchData()" mat-raised-button color="warn" >Fetch data</button>
+    <span class="example-spacer"></span>
+    <button (click)="logout()" mat-raised-button color="primary">Logout</button>
+  </mat-toolbar>
+</p>
+
+<div class="innerdata">
+  <div class="inputfields">
+    <b>Enter team name:</b>
+    <mat-form-field class="example-form-field">
+      <mat-label>Team name</mat-label>
+      <input matInput type="text" [(ngModel)]="this.teamName">
+    </mat-form-field>
+
+    <b>Enter league number:</b>
+    <mat-form-field class="example-form-field">
+      <mat-label>League id</mat-label>
+      <input matInput type="number" [(ngModel)]="this.teamLeague">
+    </mat-form-field>
+
+    <div>
+      <button (click)="createTeam()" mat-raised-button color="basic">Pridaj</button>
+      <button (click)="updateTeam()" mat-raised-button color="primary">Uprav</button>
+    </div>
+
+  </div>
+
+  <table>
+    <tr>
+      <th>Team number</th>
+      <th></th>
+      <th>Team name</th>
+      <th></th>
+      <th>Team league</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let team of (teams | sort)">
+      <td>{{team.id}}</td>
+      <td></td>
+      <td>{{team.name}}</td>
+      <td></td>
+      <td>{{team.league}}</td>
+      <td><button (click)="deletePlayer(team.id)" mat-raised-button color="warn">Vymaž</button></td>
+      <td><button (click)="initializeUpdating(team.id, team.name, team.league)" mat-raised-button color="primary">Uprav</button></td>
+    </tr>
+  </table>
+</div>

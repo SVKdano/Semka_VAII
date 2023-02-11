@@ -47,6 +47,7 @@ export class PlayerUpdateComponent implements OnInit {
   }
 
   createPlayer() {
+    this.player.id = 0;
     this.player.teamId = this.playerTeamId;
     this.player.name = this.playerName;
     this.player.surname = this.playerSurname;

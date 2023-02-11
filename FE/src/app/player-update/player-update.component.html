@@ -29,20 +29,22 @@
     </mat-form-field>
 
     <div>
-      <td><button (click)="createPlayer()" mat-raised-button color="basic">Pridaj</button></td>
-      <td><button (click)="updatePlayer()" mat-raised-button color="primary">Uprav</button></td>
+      <button (click)="createPlayer()" mat-raised-button color="basic">Pridaj</button>
+      <button (click)="updatePlayer()" mat-raised-button color="primary">Uprav</button>
     </div>
   </div>
 
 
   <table>
-    <th>Číslo hráča</th>
-    <th>Id tímu hráča</th>
-    <th>Meno</th>
-    <th>Priezvisko</th>
-    <th></th>
-    <th></th>
-    <tr *ngFor="let playa of players">
+    <tr>
+      <th>Číslo hráča</th>
+      <th>Id tímu hráča</th>
+      <th>Meno</th>
+      <th>Priezvisko</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let playa of (players | sort)">
       <td>{{playa.id}}</td>
       <td>{{playa.teamId}}</td>
       <td>{{playa.name}}</td>

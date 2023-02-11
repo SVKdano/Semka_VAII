@@ -44,6 +44,14 @@ export class TeamsServiceService {
     return this.http.get<Player[]>(`${environment.apiUrl}/players`);
   }
 
+  public getAllLeagues() :Observable<League[]> {
+    return this.http.get<League[]>(`${environment.apiUrl}/allLeagues`);
+  }
+
+  public getAllTeams() : Observable<Team[]> {
+    return this.http.get<Team[]>(`${environment.apiUrl}/allTeams`);
+  }
+
   public getLeagueRounds(leagueId: number) : Observable<number> {
     return this.http.get<number>(`${environment.apiUrl}/rounds/${leagueId}`);
   }
@@ -56,10 +64,6 @@ export class TeamsServiceService {
     return this.http.delete<Player[]>(`${environment.apiUrl}/delete/${id}`)
   }
 
-  public getAllLeagues() :Observable<League[]> {
-    return this.http.get<League[]>(`${environment.apiUrl}/allLeagues`);
-  }
-
   public updateLeague(league: League) : Observable<League[]> {
     return this.http.put<League[]>(`${environment.apiUrl}/leagueUpdate`, league);
   }
@@ -68,8 +72,16 @@ export class TeamsServiceService {
     return this.http.put<Player[]>(`${environment.apiUrl}/playerUpdate`, hrac);
   }
 
+  public updateTeam(team: Team) : Observable<Team[]> {
+    return this.http.put<Team[]>(`${environment.apiUrl}/teamUpdate`, team);
+  }
+
   public deleteLeague(id: number) : Observable<League[]> {
     return this.http.delete<League[]>(`${environment.apiUrl}/leagueDelete/${id}`);
+  }
+
+  public deleteTeam(id: number) : Observable<Team[]> {
+    return this.http.delete<Team[]>(`${environment.apiUrl}/deleteTeam/${id}`);
   }
 
   public createLeague(liga: League) : Observable<League[]> {
@@ -78,5 +90,9 @@ export class TeamsServiceService {
 
   public createPlayer(hrac: Player) : Observable<Player[]> {
     return this.http.post<Player[]>(`${environment.apiUrl}/newPlayer`, hrac);
+  }
+
+  public createTeam(team: Team) : Observable<Team[]> {
+    return this.http.post<Team[]>(`${environment.apiUrl}/newTeam`, team);
   }
 }

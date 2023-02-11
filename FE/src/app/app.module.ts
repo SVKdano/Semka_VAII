@@ -29,6 +29,7 @@ import { PlayerUpdateComponent } from './player-update/player-update.component';
 import {MatSelectModule} from "@angular/material/select";
 import { PlaceUpdateComponent } from './place-update/place-update.component';
 import { LeagueUpdateComponent } from './league-update/league-update.component';
+import { TeamUpdateComponent } from './team-update/team-update.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { LeagueUpdateComponent } from './league-update/league-update.component';
     LoggedUserComponent,
     PlayerUpdateComponent,
     PlaceUpdateComponent,
-    LeagueUpdateComponent
+    LeagueUpdateComponent,
+    TeamUpdateComponent
   ],
   imports: [
     BrowserModule,

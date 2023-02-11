@@ -6,13 +6,14 @@ p {
   margin-right: 1%;
 }
 
+.example-spacer {
+  flex: 2 1 auto;
+}
+
 table {
   text-align: center;
 }
 
-.example-spacer {
-  flex: 2 1 auto;
-}
 
 .innerdata {
   display: flex;
@@ -25,4 +26,3 @@ table {
   display: flex;
   flex-direction: column;
 }
-

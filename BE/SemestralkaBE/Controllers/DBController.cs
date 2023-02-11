@@ -117,6 +117,12 @@ namespace SemestralkaBE.Controllers
             return Ok(await _dbContext.Leagues.ToListAsync());
         }
 
+        [HttpGet("/allTeams")]
+        public async Task<ActionResult<List<Team>>> GetAllTeams()
+        {
+            return Ok(await _dbContext.Teams.ToListAsync());
+        }
+
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserRegisterRequest request)
         {
@@ -216,6 +222,22 @@ namespace SemestralkaBE.Controllers
             return Ok(await _dbContext.Players.ToListAsync());
         }
         
+        [HttpDelete("/deleteTeam/{TeamId}")]
+        public async Task<ActionResult<List<Team>>> deleteTeam(int TeamId)
+        {
+            var dbTeam = await _dbContext.Teams.FindAsync(TeamId);
+
+            if (dbTeam == null)
+            {
+                return BadRequest("Team not found");
+            }
+
+            _dbContext.Teams.Remove(dbTeam);
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(await _dbContext.Teams.ToListAsync());
+        }
+        
 
         [HttpDelete("/leagueDelete/{leagueId}")]
         public async Task<ActionResult<List<League>>> deleteLeague(int leagueId)
@@ -265,6 +287,23 @@ namespace SemestralkaBE.Controllers
             await _dbContext.SaveChangesAsync();
 
             return Ok(await _dbContext.Players.ToListAsync());
+        }
+        
+        [HttpPut("teamUpdate")]
+        public async Task<ActionResult<List<League>>> UpdateTeam(Team team)
+        {
+            var dbTeam = await _dbContext.Teams.FindAsync(team.Id);
+
+            if (dbTeam == null)
+                return BadRequest("Not found");
+
+
+            dbTeam.Name = team.Name;
+            dbTeam.League = team.League;
+
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(await _dbContext.Teams.ToListAsync());
         }
 
         private string CreateToken()
