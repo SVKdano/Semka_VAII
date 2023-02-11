@@ -1,0 +1,28 @@
+<app-header></app-header>
+<p>
+  <mat-toolbar>
+    <button mat-raised-button color="warn" routerLink="/logged" class="spacebetween">Back</button>
+    <button (click)="fetchData()" mat-raised-button color="warn" >Fetch data</button>
+    <span class="example-spacer"></span>
+    <button (click)="logout()" mat-raised-button color="primary">Logout</button>
+  </mat-toolbar>
+</p>
+
+<div class="innerdata">
+  <table>
+    <tr>
+      <th>Adresa miesta</th>
+      <th>Číslo tímu</th>
+      <th>Názov tímu</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let encounter of (schedule | sort)">
+      <td>{{encounter.id}}</td>
+      <td>{{encounter.hostNavigation.name}}</td>
+      <td *ngIf="encounter.guestNavigation">{{encounter.guestNavigation.name}}</td>
+      <td *ngIf="!encounter.guestNavigation">-</td>
+      <td><button (click)="deleteEncounter(encounter.id)" mat-raised-button color="warn">Vymaž</button></td>
+    </tr>
+  </table>
+</div>

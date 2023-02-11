@@ -122,6 +122,27 @@ namespace SemestralkaBE.Controllers
         {
             return Ok(await _dbContext.Teams.ToListAsync());
         }
+        
+        [HttpGet("/fullSchedule")]
+        public async Task<ActionResult<List<Encounter>>> GetFullSchedule()
+        {
+            return Ok(await _dbContext.Encounters.Join(_dbContext.Teams, a => a.Host, b => b.Id
+                    , (a,b) => new Encounter()
+                    {
+                        Id = a.Id,
+                        Date = a.Date,
+                        Time = a.Time,
+                        Place = a.Place,
+                        Guest = a.Guest,
+                        GuestNavigation = a.GuestNavigation,
+                        Host = b.Id,
+                        HostsWins = a.HostsWins,
+                        GuestsWins = a.GuestsWins,
+                        HostNavigation = b,
+                        Round = a.Round
+                    })
+                .ToListAsync());
+        }
 
         [HttpGet("/placesWithTeam")]
         public async Task<ActionResult<List<Place>>> GetPlacesWithTeam()
@@ -274,6 +295,22 @@ namespace SemestralkaBE.Controllers
             await _dbContext.SaveChangesAsync();
 
             return Ok(await _dbContext.Leagues.ToListAsync());
+        }
+        
+        [HttpDelete("deleteEncounter/{Id}")]
+        public async Task<ActionResult<List<Place>>> DeleteEncounter(int Id)
+        {
+            var dbEncounter = await _dbContext.Encounters.FindAsync(Id);
+
+            if (dbEncounter == null)
+            {
+                return BadRequest("Place not found");
+            }
+
+            _dbContext.Encounters.Remove(dbEncounter);
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(await _dbContext.Encounters.ToListAsync());
         }
 
         [HttpPut("leagueUpdate")]

@@ -61,6 +61,10 @@ export class TeamsServiceService {
     return this.http.get<Place[]>(`${environment.apiUrl}/placesWithTeam`);
   }
 
+  public getFullSchedule() : Observable<Schedule[]> {
+    return this.http.get<Schedule[]>(`${environment.apiUrl}/fullSchedule`);
+  }
+
   public deletePlace(id: number) : Observable<Place[]> {
     return this.http.delete<Place[]>(`${environment.apiUrl}/deletePlace/${id}`)
   }
@@ -91,6 +95,10 @@ export class TeamsServiceService {
 
   public deleteTeam(id: number) : Observable<Team[]> {
     return this.http.delete<Team[]>(`${environment.apiUrl}/deleteTeam/${id}`);
+  }
+
+  public deleteEncounter(id: number) : Observable<Schedule[]> {
+    return this.http.delete<Schedule[]>(`${environment.apiUrl}/deleteEncounter/${id}`);
   }
 
   public createLeague(liga: League) : Observable<League[]> {
