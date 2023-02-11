@@ -1,8 +1,7 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Router} from "@angular/router";
 import {TeamsServiceService} from "../services/teams-service.service";
 import {Player} from "../models/player";
-import {League} from "../models/league";
 
 @Component({
   selector: 'app-player-update',
@@ -35,7 +34,6 @@ export class PlayerUpdateComponent implements OnInit {
 
   fetchData() {
     this.service.getAllPlayers().subscribe((result : Player[]) => (this.players = result));
-    //TODO: wait for message from P
     setTimeout(() => { this.fetchData() }, 2000);
   }
 

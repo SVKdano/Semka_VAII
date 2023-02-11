@@ -7,6 +7,7 @@ import {Schedule} from "../models/schedule";
 import {Place} from "../models/place";
 import {Player} from "../models/player";
 import {League} from "../models/league";
+import {PlaceUpdate} from "../models/PlaceUpdate";
 
 @Injectable({
   providedIn: 'root'
@@ -56,8 +57,12 @@ export class TeamsServiceService {
     return this.http.get<number>(`${environment.apiUrl}/rounds/${leagueId}`);
   }
 
+  public getPlacesWithTeam() : Observable<Place[]> {
+    return this.http.get<Place[]>(`${environment.apiUrl}/placesWithTeam`);
+  }
+
   public deletePlace(id: number) : Observable<Place[]> {
-    return this.http.delete<Place[]>(`${environment.apiUrl}/${id}`)
+    return this.http.delete<Place[]>(`${environment.apiUrl}/deletePlace/${id}`)
   }
 
   public deletePlayer(id: number) : Observable<Player[]> {
@@ -74,6 +79,10 @@ export class TeamsServiceService {
 
   public updateTeam(team: Team) : Observable<Team[]> {
     return this.http.put<Team[]>(`${environment.apiUrl}/teamUpdate`, team);
+  }
+
+  public updatePlace(place: PlaceUpdate) : Observable<PlaceUpdate[]> {
+    return this.http.put<PlaceUpdate[]>(`${environment.apiUrl}/placeUpdate`,place);
   }
 
   public deleteLeague(id: number) : Observable<League[]> {
@@ -94,5 +103,9 @@ export class TeamsServiceService {
 
   public createTeam(team: Team) : Observable<Team[]> {
     return this.http.post<Team[]>(`${environment.apiUrl}/newTeam`, team);
+  }
+
+  public createPlace(place: PlaceUpdate) : Observable<PlaceUpdate[]> {
+    return this.http.post<PlaceUpdate[]>(`${environment.apiUrl}/newPlace`, place);
   }
 }

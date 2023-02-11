@@ -123,6 +123,19 @@ namespace SemestralkaBE.Controllers
             return Ok(await _dbContext.Teams.ToListAsync());
         }
 
+        [HttpGet("/placesWithTeam")]
+        public async Task<ActionResult<List<Place>>> GetPlacesWithTeam()
+        {
+            return Ok(await _dbContext.Places.Join(_dbContext.Teams, a => a.TeamId, b => b.Id,
+                (a, b) => new Place()
+                {
+                    Id = a.Id,
+                    TeamId = a.TeamId,
+                    Address = a.Address,
+                    Team = b
+                }).ToListAsync());
+        }
+
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserRegisterRequest request)
         {
@@ -189,8 +202,17 @@ namespace SemestralkaBE.Controllers
 
             return Ok(await _dbContext.Players.ToListAsync());
         }
+        
+        [HttpPost("/newPlace")]
+        public async Task<IActionResult> AddNewPlace(Place place)
+        {
+            _dbContext.Places.Add(place);
+            await _dbContext.SaveChangesAsync();
 
-        [HttpDelete("{Id}")]
+            return Ok(await _dbContext.Places.ToListAsync());
+        }
+
+        [HttpDelete("deletePlace/{Id}")]
         public async Task<ActionResult<List<Place>>> DeletePlace(int Id)
         {
             var dbPlace = await _dbContext.Places.FindAsync(Id);
@@ -304,6 +326,23 @@ namespace SemestralkaBE.Controllers
             await _dbContext.SaveChangesAsync();
 
             return Ok(await _dbContext.Teams.ToListAsync());
+        }
+        
+        [HttpPut("placeUpdate")]
+        public async Task<ActionResult<List<League>>> UpdatePlace(Place place)
+        {
+            var dbPlace = await _dbContext.Places.FindAsync(place.Id);
+
+            if (dbPlace == null)
+                return BadRequest("Not found");
+
+
+            dbPlace.TeamId = place.TeamId;
+            dbPlace.Address = place.Address;
+
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(await _dbContext.Places.ToListAsync());
         }
 
         private string CreateToken()

@@ -1,22 +1,48 @@
 <app-header></app-header>
 <p>
   <mat-toolbar>
-    <button mat-raised-button color="warn" routerLink="/logged">Back</button>
+    <button mat-raised-button color="warn" routerLink="/logged" class="spacebetween">Back</button>
+    <button (click)="fetchData()" mat-raised-button color="warn" >Fetch data</button>
     <span class="example-spacer"></span>
     <button (click)="logout()" mat-raised-button color="primary">Logout</button>
   </mat-toolbar>
 </p>
 
-<table>
-  <th>Id miesta</th>
-  <th>Addresa miesta</th>
-  <tr *ngFor="let place of places">
-  <td>{{place.id}}</td>
-  <td>{{place.address}}</td>
-  </tr>
-</table>
+<div class="innerdata">
+  <div class="inputfields">
+    <b>Zadaj adresu:</b>
+    <mat-form-field class="example-form-field">
+      <mat-label>Place Address</mat-label>
+      <input matInput type="text" [(ngModel)]="this.placeAddress">
+    </mat-form-field>
 
-<div class="delete">
-    <input [(ngModel)]="this.placeId" placeholder="Id" >
-<button (click)="deletePlace(this.placeId)" mat-raised-button color="warn" class="deleteB">Delete</button>
+    <b>Zadaj tím:</b>
+    <mat-form-field class="example-form-field">
+      <mat-label>Place team</mat-label>
+      <input matInput type="number" [(ngModel)]="this.placeTeamId">
+    </mat-form-field>
+
+    <div>
+      <button (click)="createPlace()" mat-raised-button color="basic">Pridaj</button>
+      <button (click)="updatePlaceM()" mat-raised-button color="primary">Uprav</button>
+    </div>
+  </div>
+
+
+  <table>
+    <tr>
+      <th>Adresa miesta</th>
+      <th>Číslo tímu</th>
+      <th>Názov tímu</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let onePlace of (places | sort)">
+      <td>{{onePlace.address}}</td>
+      <td>{{onePlace.team.id}}</td>
+      <td>{{onePlace.team.name}}</td>
+      <td><button (click)="deletePlace(onePlace.id)" mat-raised-button color="warn">Vymaž</button></td>
+      <td><button (click)="initializeUpdating(onePlace.id, onePlace.teamId, onePlace.address)" mat-raised-button color="primary">Uprav</button></td>
+    </tr>
+  </table>
 </div>
