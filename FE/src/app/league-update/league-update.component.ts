@@ -39,13 +39,16 @@ export class LeagueUpdateComponent implements OnInit {
   updateLeague() {
     this.league.id = this.leagueId;
     this.league.name = this.leagueName;
-    this.service.updateLeague(this.league).subscribe(
-      (result:League[]) =>
+    this.service.updateLeague(this.league).subscribe({
+      next:((result:League[]) =>
       {
         this.update.emit(result);
         this.fetchData();
-      }
-    );
+      }),
+      error:(err => {
+        alert(err.error.message);
+      })
+    });
   }
 
   deleteLeague(id: number) {
@@ -60,17 +63,22 @@ export class LeagueUpdateComponent implements OnInit {
   createLeague() {
     this.league.id = this.leagueId;
     this.league.name = this.leagueName;
-    this.service.createLeague(this.league).subscribe(
-      (result:League[]) => {
+    this.service.createLeague(this.league).subscribe ( {
+      next:((result:League[]) => {
         this.update.emit(result);
         this.fetchData();
-      }
+      }),
+      error:(
+        err =>  {
+          alert(err.error.message);
+        }
+      )
+    }
   );
   }
 
   fetchData() {
     this.service.getAllLeagues().subscribe((result : League[]) => (this.leagues = result));
-    //TODO: wait for message from P
     setTimeout(() => { this.fetchData() }, 2000);
   }
 

@@ -1,4 +1,5 @@
 using System.Security.Cryptography;
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SemestralkaBE.Models;
@@ -200,6 +201,21 @@ namespace SemestralkaBE.Controllers
         [HttpPost("/newleague")]
         public async Task<IActionResult> AddNewLeague(League league)
         {
+            if (league.Id < 5)
+            {
+                return BadRequest(new { Message = "League id cannot be less than 5!" }); 
+            }
+
+            if (string.IsNullOrEmpty(league.Name) || !Regex.IsMatch(league.Name, "[A-Za-zÀ-ȕ ]+$"))
+            {
+                return BadRequest(new { Message = "Enter valid name!" }); 
+            }
+            
+            if (await  _dbContext.Leagues.FindAsync(league.Id) != null)
+            {
+                return BadRequest(new { Message = "League already exists!" });
+            }
+            
             _dbContext.Leagues.Add(league);
             await _dbContext.SaveChangesAsync();
 
@@ -319,8 +335,17 @@ namespace SemestralkaBE.Controllers
             var dbLeague = await _dbContext.Leagues.FindAsync(league.Id);
 
             if (dbLeague == null)
-                return BadRequest("Not found");
+                return BadRequest(new { Message = "League does not exists"});
+            
+            if (league.Id < 5)
+            {
+                return BadRequest(new { Message = "League id cannot be less than 5!" }); 
+            }
 
+            if (string.IsNullOrEmpty(league.Name) || !Regex.IsMatch(league.Name, "[A-Za-zÀ-ȕ ]+$"))
+            {
+                return BadRequest(new { Message = "Enter valid name!" }); 
+            }
 
             dbLeague.Id = league.Id;
             dbLeague.Name = league.Name;
