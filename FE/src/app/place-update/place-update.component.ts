@@ -4,6 +4,7 @@ import {TeamsServiceService} from "../services/teams-service.service";
 import {Place} from "../models/place";
 import {Team} from "../models/teams";
 import {PlaceUpdate} from "../models/PlaceUpdate";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-place-update',
@@ -20,6 +21,13 @@ export class PlaceUpdateComponent implements OnInit {
   teamId: number = 0;
   teamName: string = "";
   teamLeague: number = 0;
+
+  placeForm: FormGroup = new FormGroup(
+    {
+      placeTeam: new FormControl(null, [Validators.required]),
+      placeAddress: new FormControl(null, [Validators.required])
+    }
+  )
 
   places: Place[] = [];
   @Output() update = new EventEmitter<Place[]>();

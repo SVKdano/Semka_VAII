@@ -10,22 +10,32 @@
 
 <div class="innerdata">
   <div class="inputfields">
-    <b>Zadaj adresu:</b>
-    <mat-form-field class="example-form-field">
-      <mat-label>Place Address</mat-label>
-      <input matInput type="text" [(ngModel)]="this.placeAddress">
-    </mat-form-field>
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="placeForm">
+          <b>Zadaj adresu:</b>
+          <mat-form-field class="example-form-field">
+            <mat-label>Place Address</mat-label>
+            <input matInput type="text" formControlName="placeAddress" [(ngModel)]="this.placeAddress">
+            <mat-error *ngIf="this.placeForm.get('placeAddress')?.touched && this.placeForm.get('placeAddress')?.hasError('required')">
+              Zadaj adresu</mat-error>
+          </mat-form-field>
 
-    <b>Zadaj tím:</b>
-    <mat-form-field class="example-form-field">
-      <mat-label>Place team</mat-label>
-      <input matInput type="number" [(ngModel)]="this.placeTeamId">
-    </mat-form-field>
+          <b>Zadaj tím:</b>
+          <mat-form-field class="example-form-field">
+            <mat-label>Place team</mat-label>
+            <input matInput type="number" formControlName="placeTeam" [(ngModel)]="this.placeTeamId">
+            <mat-error *ngIf="this.placeForm.get('placeTeam')?.touched && this.placeForm.get('placeTeam')?.hasError('required')">
+              Zadaj tím</mat-error>
+          </mat-form-field>
 
-    <div>
-      <button (click)="createPlace()" mat-raised-button color="basic">Pridaj</button>
-      <button (click)="updatePlaceM()" mat-raised-button color="primary">Uprav</button>
-    </div>
+          <div>
+            <button (click)="createPlace()" mat-raised-button color="basic" [disabled]="!placeForm.valid">Pridaj</button>
+            <button (click)="updatePlaceM()" mat-raised-button color="primary" [disabled]="!placeForm.valid">Uprav</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
   </div>
 
 

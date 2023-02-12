@@ -21,7 +21,7 @@ table {
   margin-top: 1%;
 }
 
-.inputfields {
+.inputfields form {
   display: flex;
   flex-direction: column;
 }
