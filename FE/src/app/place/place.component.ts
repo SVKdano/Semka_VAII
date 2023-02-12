@@ -10,6 +10,8 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class PlaceComponent {
   place: Place[] = [];
+  teamName: string = "";
+  address: string = "";
 
   constructor(private teamService: TeamsServiceService,
               private route: ActivatedRoute) {
@@ -17,6 +19,11 @@ export class PlaceComponent {
 
   ngOnInit() : void {
     const placeId = Number(this.route.snapshot.paramMap.get('placeId'));
-    this.teamService.getPlaces(placeId).subscribe((result: Place[]) => (this.place = result));
+    this.teamService.getPlaces(placeId).subscribe((result: Place[]) =>
+    {
+      (this.place = result);
+      this.teamName = result[0].team.name;
+      this.address = result[0].address;
+    });
   }
 }

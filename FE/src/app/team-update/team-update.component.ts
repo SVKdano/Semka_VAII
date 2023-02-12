@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { TeamsServiceService } from "../services/teams-service.service";
 import {Team} from "../models/teams";
 import {Player} from "../models/player";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-team-update',
@@ -16,6 +17,13 @@ export class TeamUpdateComponent {
   teamLeague: number = 0;
 
   teams: Team[] = [];
+
+  teamForm: FormGroup = new FormGroup(
+    {
+      teamLeague: new FormControl(null, [Validators.required]),
+      teamName: new FormControl(null, [Validators.required, Validators.pattern("[A-Za-zÀ-ȕ ]+")])
+    }
+  )
 
   @Output() update = new EventEmitter<Team[]>();
 

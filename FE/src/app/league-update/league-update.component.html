@@ -8,25 +8,38 @@
   </mat-toolbar>
 </p>
 
+
 <div class="innerdata">
   <div class="inputfields">
-    <b>Zadaj číslo ligy:</b>
-    <mat-form-field class="example-form-field">
-      <mat-label>League number</mat-label>
-      <input matInput type="number" [(ngModel)]="this.leagueId">
-    </mat-form-field>
+    <mat-card>
+      <mat-card-content>
+        <b>Zadaj číslo ligy:</b>
+        <form [formGroup]="leagueForm">
+        <mat-form-field>
+          <mat-label>League number</mat-label>
+          <input matInput type="number" formControlName="leagueID" [(ngModel)]="this.leagueId">
+          <mat-error *ngIf="this.leagueForm.get('leagueID')?.touched && this.leagueForm.get('leagueID')?.hasError('required')">
+             Zadaj číslo ligy</mat-error>
+          <mat-error *ngIf="this.leagueForm.get('leagueID')?.touched && this.leagueForm.get('leagueID')?.hasError('min')">
+            Neplatná hodnota čisla ligy</mat-error>
+        </mat-form-field>
 
-    <b>Zadaj názov ligy:</b>
-    <mat-form-field class="example-form-field">
-      <mat-label>League name</mat-label>
-      <input matInput type="text" [(ngModel)]="this.leagueName">
-    </mat-form-field>
-
-    <div>
-    <td><button (click)="createLeague()" mat-raised-button color="basic">Pridaj</button></td>
-    <td><button (click)="updateLeague()" mat-raised-button color="primary">Uprav</button></td>
-    </div>
-
+        <b>Zadaj názov ligy:</b>
+        <mat-form-field>
+          <mat-label>League name</mat-label>
+          <input matInput type="text" formControlName="leagueName" [(ngModel)]="this.leagueName">
+          <mat-error *ngIf="this.leagueForm.get('leagueName')?.touched && this.leagueForm.get('leagueName')?.hasError('required')">
+            Zadaj názov ligy</mat-error>
+          <mat-error *ngIf="this.leagueForm.get('leagueName')?.touched && this.leagueForm.get('leagueName')?.hasError('pattern')">
+            Nemôže obsahovať čislo</mat-error>
+        </mat-form-field>
+        </form>
+        <div>
+        <td><button (click)="createLeague()" mat-raised-button color="basic" [disabled]="!leagueForm.valid">Pridaj</button></td>
+        <td><button (click)="updateLeague()" mat-raised-button color="primary" [disabled]="!leagueForm.valid">Uprav</button></td>
+        </div>
+      </mat-card-content>
+    </mat-card>
   </div>
 
   <table>
@@ -44,7 +57,6 @@
     </tr>
   </table>
 </div>
-
 
 
 

@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Router} from "@angular/router";
 import {TeamsServiceService} from "../services/teams-service.service";
 import {League} from "../models/league";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-league-update',
@@ -12,6 +13,13 @@ export class LeagueUpdateComponent implements OnInit {
   @Input() league: League = {id:0, name:""};
   leagueId: number = 0;
   leagueName: string = "";
+
+  leagueForm: FormGroup = new FormGroup(
+    {
+      leagueID: new FormControl(null,[Validators.required, Validators.min(5)]),
+      leagueName: new FormControl(null, [Validators.required, Validators.pattern("[A-Za-zÀ-ȕ ]+")])
+    }
+  )
 
   leagues: League[] = [];
 

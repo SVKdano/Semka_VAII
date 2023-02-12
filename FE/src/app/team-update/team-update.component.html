@@ -10,23 +10,34 @@
 
 <div class="innerdata">
   <div class="inputfields">
-    <b>Enter team name:</b>
-    <mat-form-field class="example-form-field">
-      <mat-label>Team name</mat-label>
-      <input matInput type="text" [(ngModel)]="this.teamName">
-    </mat-form-field>
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="teamForm">
+          <b>Enter team name:</b>
+          <mat-form-field class="example-form-field">
+            <mat-label>Team name</mat-label>
+            <input matInput type="text" formControlName="teamName" [(ngModel)]="this.teamName">
+            <mat-error *ngIf="this.teamForm.get('teamName')?.touched && this.teamForm.get('teamName')?.hasError('required')">
+              Zadaj názov tímu</mat-error>
+            <mat-error *ngIf="this.teamForm.get('teamName')?.touched && this.teamForm.get('teamName')?.hasError('pattern')">
+              Žiadne čísla a špec. znaky</mat-error>
+          </mat-form-field>
 
-    <b>Enter league number:</b>
-    <mat-form-field class="example-form-field">
-      <mat-label>League id</mat-label>
-      <input matInput type="number" [(ngModel)]="this.teamLeague">
-    </mat-form-field>
+          <b>Enter league number:</b>
+          <mat-form-field class="example-form-field">
+            <mat-label>League id</mat-label>
+            <input matInput type="number" formControlName="teamLeague" [(ngModel)]="this.teamLeague">
+            <mat-error *ngIf="this.teamForm.get('teamLeague')?.touched && this.teamForm.get('teamLeague')?.hasError('required')">
+              Zadaj číslo ligy</mat-error>
+          </mat-form-field>
 
-    <div>
-      <button (click)="createTeam()" mat-raised-button color="basic">Pridaj</button>
-      <button (click)="updateTeam()" mat-raised-button color="primary">Uprav</button>
-    </div>
-
+          <div>
+            <button (click)="createTeam()" mat-raised-button color="basic" [disabled]="!teamForm.valid">Pridaj</button>
+            <button (click)="updateTeam()" mat-raised-button color="primary" [disabled]="!teamForm.valid">Uprav</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
   </div>
 
   <table>

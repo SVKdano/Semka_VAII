@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Router} from "@angular/router";
 import {TeamsServiceService} from "../services/teams-service.service";
 import {Player} from "../models/player";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-player-update',
@@ -16,6 +17,15 @@ export class PlayerUpdateComponent implements OnInit {
   playerSurname: string = "";
 
   players: Player[] = [];
+
+  playerForm: FormGroup = new FormGroup(
+    {
+      playerLeague: new FormControl(null, [Validators.required]),
+      playerName: new FormControl(null, [Validators.required, Validators.pattern("[A-Za-zÀ-ȕ ]+")]),
+      playerSurname: new FormControl(null, [Validators.required, Validators.pattern("[A-Za-zÀ-ȕ ]+")])
+    }
+  )
+
   @Output() update = new EventEmitter<Player[]>();
 
   constructor(private router:Router, private service:TeamsServiceService) {

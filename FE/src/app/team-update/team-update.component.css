@@ -26,3 +26,8 @@ table {
   display: flex;
   flex-direction: column;
 }
+
+mat-card-content form {
+  display: flex;
+  flex-direction: column;
+}

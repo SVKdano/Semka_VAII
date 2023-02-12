@@ -11,27 +11,43 @@
 <div class="innerdata">
   <div class="inputfields">
     <b>Zadaj meno:</b>
-    <mat-form-field class="example-form-field">
-      <mat-label>Player name</mat-label>
-      <input matInput type="text" [(ngModel)]="this.playerName">
-    </mat-form-field>
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="playerForm">
+          <mat-form-field class="example-form-field">
+            <mat-label>Player name</mat-label>
+            <input matInput type="text" formControlName="playerName" [(ngModel)]="this.playerName">
+            <mat-error *ngIf="this.playerForm.get('playerName')?.touched && this.playerForm.get('playerName')?.hasError('required')">
+              Zadaj meno hráča</mat-error>
+            <mat-error *ngIf="this.playerForm.get('playerName')?.touched && this.playerForm.get('playerName')?.hasError('pattern')">
+              Žiadne čísla a špec. znaky</mat-error>
+          </mat-form-field>
 
-    <b>Zadaj priezvisko:</b>
-    <mat-form-field class="example-form-field">
-      <mat-label>Player surname</mat-label>
-      <input matInput type="text" [(ngModel)]="this.playerSurname">
-    </mat-form-field>
+          <b>Zadaj priezvisko:</b>
+          <mat-form-field class="example-form-field">
+            <mat-label>Player surname</mat-label>
+            <input matInput type="text" formControlName="playerSurname" [(ngModel)]="this.playerSurname">
+            <mat-error *ngIf="this.playerForm.get('playerSurname')?.touched && this.playerForm.get('playerSurname')?.hasError('required')">
+              Zadaj priezvisko hráča</mat-error>
+            <mat-error *ngIf="this.playerForm.get('playerSurname')?.touched && this.playerForm.get('playerSurname')?.hasError('pattern')">
+              Žiadne čísla a špec. znaky</mat-error>
+          </mat-form-field>
 
-    <b>Zadaj názov tímu:</b>
-    <mat-form-field class="example-form-field">
-      <mat-label>Team</mat-label>
-      <input matInput type="text" [(ngModel)]="this.playerTeamId">
-    </mat-form-field>
+          <b>Zadaj názov tímu:</b>
+          <mat-form-field class="example-form-field">
+            <mat-label>Team</mat-label>
+            <input matInput type="text" formControlName="playerLeague" [(ngModel)]="this.playerTeamId">
+            <mat-error *ngIf="this.playerForm.get('playerLeague')?.touched && this.playerForm.get('playerLeague')?.hasError('required')">
+              Zadaj číslo ligy</mat-error>
+          </mat-form-field>
 
-    <div>
-      <button (click)="createPlayer()" mat-raised-button color="basic">Pridaj</button>
-      <button (click)="updatePlayer()" mat-raised-button color="primary">Uprav</button>
-    </div>
+          <div>
+            <button (click)="createPlayer()" mat-raised-button color="basic">Pridaj</button>
+            <button (click)="updatePlayer()" mat-raised-button color="primary">Uprav</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
   </div>
 
 
