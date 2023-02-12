@@ -36,14 +36,14 @@
           <b>Zadaj názov tímu:</b>
           <mat-form-field class="example-form-field">
             <mat-label>Team</mat-label>
-            <input matInput type="text" formControlName="playerLeague" [(ngModel)]="this.playerTeamId">
+            <input matInput type="number" formControlName="playerLeague" [(ngModel)]="this.playerTeamId">
             <mat-error *ngIf="this.playerForm.get('playerLeague')?.touched && this.playerForm.get('playerLeague')?.hasError('required')">
               Zadaj číslo ligy</mat-error>
           </mat-form-field>
 
           <div>
-            <button (click)="createPlayer()" mat-raised-button color="basic">Pridaj</button>
-            <button (click)="updatePlayer()" mat-raised-button color="primary">Uprav</button>
+            <button (click)="createPlayer()" mat-raised-button color="basic" [disabled]="!playerForm.valid">Pridaj</button>
+            <button (click)="updatePlayer()" mat-raised-button color="primary" [disabled]="!playerForm.valid">Uprav</button>
           </div>
         </form>
       </mat-card-content>

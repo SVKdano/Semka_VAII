@@ -64,12 +64,16 @@ export class PlaceUpdateComponent implements OnInit {
     this.place.id = 0;
     this.place.teamId = this.placeTeamId;
     this.place.address = this.placeAddress;
-    this.service.createPlace(this.place).subscribe(
-      (result:PlaceUpdate[]) => {
+    this.service.createPlace(this.place).subscribe( {
+      next:((result:PlaceUpdate[]) => {
         this.updatePlace.emit(result);
         this.fetchData();
-      }
-    );
+      }),
+      error:(err =>
+      {
+        alert(err.error.message);
+      })
+    });
   }
 
   updatePlaceM() {
@@ -77,13 +81,17 @@ export class PlaceUpdateComponent implements OnInit {
     this.place.address = this.placeAddress;
     this.place.teamId = this.placeTeamId;
 
-    this.service.updatePlace(this.place).subscribe(
-      (result:PlaceUpdate[]) =>
+    this.service.updatePlace(this.place).subscribe( {
+      next:((result:PlaceUpdate[]) =>
       {
         this.updatePlace.emit(result);
         this.fetchData();
-      }
-    );
+      }),
+      error:(err =>
+      {
+        alert(err.error.message);
+      })
+    });
   }
 
   public logout() {

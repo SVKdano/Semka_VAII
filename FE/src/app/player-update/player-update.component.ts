@@ -59,12 +59,16 @@ export class PlayerUpdateComponent implements OnInit {
     this.player.teamId = this.playerTeamId;
     this.player.name = this.playerName;
     this.player.surname = this.playerSurname;
-    this.service.createPlayer(this.player).subscribe(
-      (result:Player[]) => {
+    this.service.createPlayer(this.player).subscribe( {
+      next:((result:Player[]) => {
         this.update.emit(result);
         this.fetchData();
-      }
-    );
+      }),
+      error:(err =>
+      {
+        alert(err.error.message);
+      })
+    });
   }
 
   updatePlayer() {
@@ -72,13 +76,17 @@ export class PlayerUpdateComponent implements OnInit {
     this.player.teamId = this.playerTeamId;
     this.player.name = this.playerName;
     this.player.surname = this.playerSurname;
-    this.service.updatePlayer(this.player).subscribe(
-      (result:Player[]) =>
+    this.service.updatePlayer(this.player).subscribe( {
+      next:((result:Player[]) =>
       {
         this.update.emit(result);
         this.fetchData();
-      }
-    );
+      }),
+      error:(err =>
+      {
+        alert(err.error.message);
+      })
+    });
   }
 
   public logout() {

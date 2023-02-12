@@ -225,6 +225,18 @@ namespace SemestralkaBE.Controllers
         [HttpPost("/newTeam")]
         public async Task<IActionResult> AddNewTeam(Team team)
         {
+            var league = await _dbContext.Leagues.FindAsync(team.League);
+            
+            if (league == null)
+            {
+                return BadRequest(new { Message = "League does not exists!" });
+            }
+            
+            if (string.IsNullOrEmpty(team.Name) || !Regex.IsMatch(team.Name, "[A-Za-zÀ-ȕ ]+$"))
+            {
+                return BadRequest(new { Message = "Enter valid name!" }); 
+            }
+            
             _dbContext.Teams.Add(team);
             await _dbContext.SaveChangesAsync();
 
@@ -234,6 +246,23 @@ namespace SemestralkaBE.Controllers
         [HttpPost("/newPlayer")]
         public async Task<IActionResult> AddNewPlayer(Player player)
         {
+            var team = await _dbContext.Teams.FindAsync(player.TeamId);
+
+            if (team == null)
+            {
+                return BadRequest(new { Message = "Team does not exist" });
+            }
+            
+            if (string.IsNullOrEmpty(player.Name) || !Regex.IsMatch(player.Name, "[A-Za-zÀ-ȕ ]+$"))
+            {
+                return BadRequest(new { Message = "Enter valid name!" }); 
+            }
+            
+            if (string.IsNullOrEmpty(player.Surname) || !Regex.IsMatch(player.Surname, "[A-Za-zÀ-ȕ ]+$"))
+            {
+                return BadRequest(new { Message = "Enter valid surname!" }); 
+            }
+                
             _dbContext.Players.Add(player);
             await _dbContext.SaveChangesAsync();
 
@@ -243,6 +272,18 @@ namespace SemestralkaBE.Controllers
         [HttpPost("/newPlace")]
         public async Task<IActionResult> AddNewPlace(Place place)
         {
+            var team = await _dbContext.Teams.FindAsync(place.TeamId);
+
+            if (team == null)
+            {
+                return BadRequest(new { Message = "Team does not exist" });
+            }
+
+            if (string.IsNullOrEmpty(place.Address))
+            {
+                return BadRequest(new { Message = "Enter address!" }); 
+            }
+            
             _dbContext.Places.Add(place);
             await _dbContext.SaveChangesAsync();
 
@@ -361,8 +402,24 @@ namespace SemestralkaBE.Controllers
             var dbPlayer = await _dbContext.Players.FindAsync(player.Id);
 
             if (dbPlayer == null)
-                return BadRequest("Not found");
+                return BadRequest("Player does not exists");
+            
+            var team = await _dbContext.Teams.FindAsync(player.TeamId);
 
+            if (team == null)
+            {
+                return BadRequest(new { Message = "Team does not exist" });
+            }
+            
+            if (string.IsNullOrEmpty(player.Name) || !Regex.IsMatch(player.Name, "[A-Za-zÀ-ȕ ]+$"))
+            {
+                return BadRequest(new { Message = "Enter valid name!" }); 
+            }
+            
+            if (string.IsNullOrEmpty(player.Surname) || !Regex.IsMatch(player.Surname, "[A-Za-zÀ-ȕ ]+$"))
+            {
+                return BadRequest(new { Message = "Enter valid surname!" }); 
+            }
 
             dbPlayer.Name = player.Name;
             dbPlayer.Surname = player.Surname;
@@ -379,8 +436,19 @@ namespace SemestralkaBE.Controllers
             var dbTeam = await _dbContext.Teams.FindAsync(team.Id);
 
             if (dbTeam == null)
-                return BadRequest("Not found");
+                return BadRequest(new { Message = "Team does not exists" });
 
+            var league = await _dbContext.Leagues.FindAsync(team.League);
+            
+            if (league == null)
+            {
+                return BadRequest(new { Message = "League does not exists!" });
+            }
+            
+            if (string.IsNullOrEmpty(team.Name) || !Regex.IsMatch(team.Name, "[A-Za-zÀ-ȕ ]+$"))
+            {
+                return BadRequest(new { Message = "Enter valid name!" }); 
+            }
 
             dbTeam.Name = team.Name;
             dbTeam.League = team.League;
@@ -396,8 +464,19 @@ namespace SemestralkaBE.Controllers
             var dbPlace = await _dbContext.Places.FindAsync(place.Id);
 
             if (dbPlace == null)
-                return BadRequest("Not found");
+                return BadRequest(new { Message = "Place does not exists" });
+            
+            var team = await _dbContext.Teams.FindAsync(place.TeamId);
 
+            if (team == null)
+            {
+                return BadRequest(new { Message = "Team does not exist" });
+            }
+
+            if (string.IsNullOrEmpty(place.Address))
+            {
+                return BadRequest(new { Message = "Enter address!" }); 
+            }
 
             dbPlace.TeamId = place.TeamId;
             dbPlace.Address = place.Address;
