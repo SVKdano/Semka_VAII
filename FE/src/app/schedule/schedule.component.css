@@ -31,12 +31,8 @@ mat-form-field {
 }
 
 @media only screen and (max-width: 768px) {
-  .id mat-card-content {
-    padding-left: 30%;
-  }
-
-  .id {
-    margin-left: 2%;
+  .scroll {
+    overflow-x: auto;
   }
 
   .panel {

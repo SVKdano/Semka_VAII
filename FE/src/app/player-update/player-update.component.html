@@ -41,7 +41,7 @@
               Zadaj číslo ligy</mat-error>
           </mat-form-field>
 
-          <div>
+          <div class="buttonMargin">
             <button (click)="createPlayer()" mat-raised-button color="basic" [disabled]="!playerForm.valid">Pridaj</button>
             <button (click)="updatePlayer()" mat-raised-button color="primary" [disabled]="!playerForm.valid">Uprav</button>
           </div>
