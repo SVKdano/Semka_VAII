@@ -3,6 +3,8 @@ using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SemestralkaBE.Models;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace SemestralkaBE.Controllers
 {
@@ -157,6 +159,20 @@ namespace SemestralkaBE.Controllers
                     Team = b
                 }).ToListAsync());
         }
+        
+        [HttpGet("/playersWithTeam")]
+        public async Task<ActionResult<List<Player>>> GetPlayersWithTeam()
+        {
+            return Ok(await _dbContext.Players.Join(_dbContext.Teams, a => a.TeamId, b => b.Id,
+                (a, b) => new Player()
+                {
+                    Id = a.Id,
+                    TeamId = a.TeamId,
+                    Name = a.Name,
+                    Surname = a.Surname,
+                    Team = b
+                }).ToListAsync());
+        }
 
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserRegisterRequest request)
@@ -170,7 +186,7 @@ namespace SemestralkaBE.Controllers
             var user = new User
             {
                 Email = request.Email,
-                Password = request.Password,
+                Password = Encrypt(request.Password),
                 Token = CreateToken()
             };
 
@@ -181,21 +197,22 @@ namespace SemestralkaBE.Controllers
         }
         
         [HttpPost("login")]
-        public async Task<IActionResult> Login(UserRegisterRequest request)
+        public async Task<ActionResult<List<User>>> Login(UserRegisterRequest request)
         {
             var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
 
             if (user == null)
             {
-                return BadRequest("Wrong email");
+                return BadRequest(new { Message = "Wrong email"});
             }
 
-            if (user.Password != request.Password)
+            var decrypted = Decrypt(user.Password);
+            if ( decrypted != request.Password)
             {
                 return BadRequest("Wrong password");
             }
 
-            return Ok($"{user.Email}");
+            return Ok(user);
         }
         
         [HttpPost("/newleague")]
@@ -489,6 +506,74 @@ namespace SemestralkaBE.Controllers
         private string CreateToken()
         {
             return Convert.ToHexString(RandomNumberGenerator.GetBytes(64));
+        }
+        
+        private string Decrypt(string? token)
+        {
+            string publicKey = "IdkwtdwtIdkwtdwt";
+            string? privateKey = Environment.GetEnvironmentVariable("PrivateKey", EnvironmentVariableTarget.Process) ??
+                          Environment.GetEnvironmentVariable("PrivateKey", EnvironmentVariableTarget.User);
+            
+            if (token == null)
+                return "";
+
+            var decrypted = "";
+
+            byte[] secretKeyByte = { };
+            secretKeyByte = System.Text.Encoding.UTF8.GetBytes(privateKey!);
+            byte[] publicKeyByte = { };
+            publicKeyByte = System.Text.Encoding.UTF8.GetBytes(publicKey!);
+
+            MemoryStream? ms = null;
+            CryptoStream? cs = null;
+
+            byte[] inputByteArray = new byte[token.Replace(" ", "+").Length];
+            inputByteArray = Convert.FromBase64String(token.Replace(" ", "+"));
+
+            using (Aes des = Aes.Create())
+            {
+                ms = new MemoryStream();
+                cs = new CryptoStream(ms, des.CreateDecryptor(secretKeyByte, publicKeyByte), CryptoStreamMode.Write);
+
+                cs.Write(inputByteArray, 0, inputByteArray.Length);
+                cs.FlushFinalBlock();
+
+                Encoding encoding = Encoding.UTF8;
+                decrypted = encoding.GetString(ms.ToArray());
+            }
+
+            return decrypted;
+        }
+        
+        private string Encrypt(string? token)
+        {
+            string publicKey = "IdkwtdwtIdkwtdwt";
+            string? privateKey = Environment.GetEnvironmentVariable("PrivateKey", EnvironmentVariableTarget.Process) ??
+                                  Environment.GetEnvironmentVariable("PrivateKey", EnvironmentVariableTarget.User);
+            
+            var crypted = "";
+
+            byte[] secretKeyByte = { };
+            secretKeyByte = System.Text.Encoding.UTF8.GetBytes(privateKey!);
+            byte[] publicKeyByte = { };
+            publicKeyByte = System.Text.Encoding.UTF8.GetBytes(publicKey!);
+
+            byte[] inputByteArray = System.Text.Encoding.UTF8.GetBytes(token!);
+
+            MemoryStream? ms = null;
+            CryptoStream? cs = null;
+
+            using (Aes des = Aes.Create())
+            {
+                ms = new MemoryStream();
+                cs = new CryptoStream(ms, des.CreateEncryptor(secretKeyByte, publicKeyByte), CryptoStreamMode.Write);
+
+                cs.Write(inputByteArray, 0, inputByteArray.Length);
+                cs.FlushFinalBlock();
+                crypted = Convert.ToBase64String(ms.ToArray());
+            }
+
+            return crypted;
         }
     }
 }

@@ -61,6 +61,10 @@ export class TeamsServiceService {
     return this.http.get<Place[]>(`${environment.apiUrl}/placesWithTeam`);
   }
 
+  public getPlayersWithTeam() : Observable<Player[]> {
+    return this.http.get<Player[]>(`${environment.apiUrl}/playersWithTeam`);
+  }
+
   public getFullSchedule() : Observable<Schedule[]> {
     return this.http.get<Schedule[]>(`${environment.apiUrl}/fullSchedule`);
   }

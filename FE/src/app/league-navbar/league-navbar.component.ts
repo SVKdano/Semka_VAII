@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class LeagueNavbarComponent {
 
+  isLogged() : boolean {
+    return !(localStorage.length == 0);
+  }
 }

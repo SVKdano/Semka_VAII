@@ -17,6 +17,7 @@ export class PlayerUpdateComponent implements OnInit {
   playerSurname: string = "";
 
   players: Player[] = [];
+  playersWithTeam: Player[] = [];
 
   playerForm: FormGroup = new FormGroup(
     {
@@ -44,6 +45,7 @@ export class PlayerUpdateComponent implements OnInit {
 
   fetchData() {
     this.service.getAllPlayers().subscribe((result : Player[]) => (this.players = result));
+    this.service.getPlayersWithTeam().subscribe((result:Player[]) => (this.playersWithTeam = result));
     setTimeout(() => { this.fetchData() }, 2000);
   }
 

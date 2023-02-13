@@ -53,16 +53,16 @@
 
   <table>
     <tr>
-      <th>Číslo hráča</th>
       <th>Id tímu hráča</th>
+      <th>Názov tímu hráča</th>
       <th>Meno</th>
       <th>Priezvisko</th>
       <th></th>
       <th></th>
     </tr>
-    <tr *ngFor="let playa of (players | sort)">
-      <td>{{playa.id}}</td>
+    <tr *ngFor="let playa of (playersWithTeam | sort)">
       <td>{{playa.teamId}}</td>
+      <td>{{playa.team.name}}</td>
       <td>{{playa.name}}</td>
       <td>{{playa.surname}}</td>
       <td><button (click)="deletePlayer(playa.id)" mat-raised-button color="warn">Vymaž</button></td>

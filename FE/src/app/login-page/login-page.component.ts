@@ -38,7 +38,12 @@ export class LoginPageComponent {
     if (!this.loginForm.valid) {
       return;
     }
-    this.authService.login(user).subscribe((token: string) => {localStorage.setItem("token", token)});
+    this.authService.login(user).subscribe({
+      next:((token: string) => {localStorage.setItem("token", token)}),
+      error:(_ => {
+        alert("Wrong email or password");
+      })
+    });
 
     this.router.navigate( ["/logged"]);
   }

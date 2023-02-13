@@ -18,7 +18,11 @@
       Kontakt
     </button>
 
-    <button mat-raised-button color="primary" class="rightSided" routerLink="logged">
+    <button mat-raised-button color="primary" class="rightSided" routerLink="logged" *ngIf="isLogged()">
+      Logged
+    </button>
+
+    <button mat-raised-button color="primary" class="rightSided" routerLink="logged" *ngIf="!isLogged()">
       Login
     </button>
   </mat-toolbar>
