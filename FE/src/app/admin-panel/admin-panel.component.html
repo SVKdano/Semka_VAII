@@ -13,7 +13,7 @@
     <mat-card>
       <mat-card-content>
         <form [formGroup]="userForm">
-          <b>Enter team name:</b>
+          <b>Zadaj email:</b>
           <mat-form-field class="example-form-field">
             <mat-label>Email</mat-label>
             <input matInput type="text" formControlName="userMail" [(ngModel)]="this.userEmail">
@@ -23,7 +23,7 @@
               Zadaj valídny email</mat-error>
           </mat-form-field>
 
-          <b>Enter league number:</b>
+          <b>Zadaj heslo:</b>
           <mat-form-field class="example-form-field">
             <mat-label>Heslo</mat-label>
             <input matInput type="text" formControlName="userPasswd" [(ngModel)]="this.userPassword">
