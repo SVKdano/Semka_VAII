@@ -1,0 +1,58 @@
+<app-header></app-header>
+<p>
+  <mat-toolbar>
+    <button mat-raised-button color="warn" routerLink="/logged">Changes</button>
+    <button (click)="fetchData()" mat-raised-button color="warn">Fetch data</button>
+
+    <button (click)="logout()" mat-raised-button color="primary" class="onRight">Logout</button>
+  </mat-toolbar>
+</p>
+
+<div class="innerdata">
+  <div class="inputfields">
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="userForm">
+          <b>Enter team name:</b>
+          <mat-form-field class="example-form-field">
+            <mat-label>Email</mat-label>
+            <input matInput type="text" formControlName="userMail" [(ngModel)]="this.userEmail">
+            <mat-error *ngIf="this.userForm.get('userMail')?.touched && this.userForm.get('userMail')?.hasError('required')">
+              Zadaj email</mat-error>
+            <mat-error *ngIf="this.userForm.get('userMail')?.touched && this.userForm.get('userMail')?.hasError('email')">
+              Zadaj valídny email</mat-error>
+          </mat-form-field>
+
+          <b>Enter league number:</b>
+          <mat-form-field class="example-form-field">
+            <mat-label>Heslo</mat-label>
+            <input matInput type="text" formControlName="userPasswd" [(ngModel)]="this.userPassword">
+            <mat-error *ngIf="this.userForm.get('userPasswd')?.touched && this.userForm.get('userPasswd')?.hasError('required')">
+              Zadaj heslo</mat-error>
+          </mat-form-field>
+
+          <div>
+            <button (click)="createUser()" mat-raised-button color="basic" [disabled]="!userForm.valid">Pridaj</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <table>
+    <tr>
+      <th>User email</th>
+      <th></th>
+      <th>User password</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let user of (users | sort)">
+      <td>{{user.email}}</td>
+      <td></td>
+      <td>{{user.password}}</td>
+      <td></td>
+      <td><button (click)="deleteUser(user.id)" mat-raised-button color="warn">Vymaž</button></td>
+    </tr>
+  </table>
+</div>

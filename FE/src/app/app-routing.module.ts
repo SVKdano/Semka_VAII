@@ -14,6 +14,8 @@ import {PlaceUpdateComponent} from "./place-update/place-update.component";
 import {LeagueUpdateComponent} from "./league-update/league-update.component";
 import {TeamUpdateComponent} from "./team-update/team-update.component";
 import {ScheduleUpdateComponent} from "./schedule-update/schedule-update.component";
+import {AdminPanelComponent} from "./admin-panel/admin-panel.component";
+import {RoleGuard} from "./guard/role.guard";
 
 const routes: Routes = [
   { path: "", component: WelcomeComponent },
@@ -29,6 +31,7 @@ const routes: Routes = [
   { path: "logged/leagueChanges", component: LeagueUpdateComponent, canActivate: [AuthGuard]},
   { path: "logged/teamChanges", component: TeamUpdateComponent, canActivate: [AuthGuard]},
   { path: "logged/scheduleChanges", component: ScheduleUpdateComponent, canActivate: [AuthGuard]},
+  { path: "logged/admin", component:AdminPanelComponent, canActivate: [AuthGuard,RoleGuard]},
   { path: "**", redirectTo: "", pathMatch: "full"},
 ];
 @NgModule({

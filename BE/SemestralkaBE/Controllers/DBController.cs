@@ -174,26 +174,40 @@ namespace SemestralkaBE.Controllers
                 }).ToListAsync());
         }
 
+        [HttpGet("/users")]
+        public async Task<ActionResult<List<Player>>> GetUsers()
+        {
+            var users = await _dbContext.Users.ToListAsync();
+            var returnUsers = new List<User>();
+
+            foreach (var user in users)
+            {
+                user.Password = Decrypt(user.Password);
+                returnUsers.Add(user);
+            }
+            return Ok(returnUsers);
+        }
+        
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserRegisterRequest request)
         {
             if (_dbContext.Users.Any(u => u.Email == request.Email))
-                return BadRequest(new { Message = "User already exists"});
+                return BadRequest(new { Message = "User already exists!"});
 
             if (request.Password.Length < 6)
-                return BadRequest(new { Message = "Password to short." });
+                return BadRequest(new { Message = "Password to short!" });
 
             var user = new User
             {
                 Email = request.Email,
                 Password = Encrypt(request.Password),
-                Token = CreateToken()
+                Token = "user"
             };
 
             _dbContext.Users.Add(user);
             await _dbContext.SaveChangesAsync();
 
-            return Ok(new { Message = "Registration successful. Continue to login."});
+            return Ok(new { Message = "Registration successful."});
         }
         
         [HttpPost("login")]
@@ -385,6 +399,22 @@ namespace SemestralkaBE.Controllers
             await _dbContext.SaveChangesAsync();
 
             return Ok(await _dbContext.Encounters.ToListAsync());
+        }
+        
+        [HttpDelete("/deleteUser/{userId}")]
+        public async Task<ActionResult<List<Player>>> DeleteUser(int userId)
+        {
+            var dbUser = await _dbContext.Users.FindAsync(userId);
+
+            if (dbUser == null)
+            {
+                return BadRequest("User not found");
+            }
+
+            _dbContext.Users.Remove(dbUser);
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(await _dbContext.Users.ToListAsync());
         }
 
         [HttpPut("leagueUpdate")]

@@ -31,6 +31,7 @@ import { PlaceUpdateComponent } from './place-update/place-update.component';
 import { LeagueUpdateComponent } from './league-update/league-update.component';
 import { TeamUpdateComponent } from './team-update/team-update.component';
 import { ScheduleUpdateComponent } from './schedule-update/schedule-update.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ScheduleUpdateComponent } from './schedule-update/schedule-update.compo
     PlaceUpdateComponent,
     LeagueUpdateComponent,
     TeamUpdateComponent,
-    ScheduleUpdateComponent
+    ScheduleUpdateComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,

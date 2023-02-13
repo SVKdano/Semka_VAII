@@ -1,0 +1,39 @@
+p {
+  margin: 0;
+}
+
+mat-toolbar {
+  justify-content: flex-start;
+}
+
+.onRight {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+table {
+  text-align: center;
+}
+
+button {
+  margin-right: .5%;
+}
+
+.innerdata {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 1%;
+}
+
+.inputfields {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-card-content form {
+  display: flex;
+  flex-direction: column;
+}
+
+
