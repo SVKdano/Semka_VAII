@@ -35,19 +35,21 @@
         </mat-form-field>
         </form>
         <div>
-        <td><button (click)="createLeague()" mat-raised-button color="basic" [disabled]="!leagueForm.valid">Pridaj</button></td>
-        <td><button (click)="updateLeague()" mat-raised-button color="primary" [disabled]="!leagueForm.valid">Uprav</button></td>
+        <button (click)="createLeague()" mat-raised-button color="basic" [disabled]="!leagueForm.valid">Pridaj</button>
+        <button (click)="updateLeague()" mat-raised-button color="primary" [disabled]="!leagueForm.valid">Uprav</button>
         </div>
       </mat-card-content>
     </mat-card>
   </div>
 
   <table>
-    <th>League number</th>
-    <th></th>
-    <th>League name</th>
-    <th></th>
-    <th></th>
+    <tr>
+      <th>League number</th>
+      <th></th>
+      <th>League name</th>
+      <th></th>
+      <th></th>
+    </tr>
     <tr *ngFor="let liga of (leagues | sort)">
       <td>{{liga.id}}</td>
       <td></td>
